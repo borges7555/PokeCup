@@ -1,3 +1,6 @@
+CREATE TYPE Typing FROM VARCHAR(10);
+CREATE TYPE Category FROM VARCHAR(10);
+
 CREATE TABLE [Item](
 	Nome VARCHAR(32) NOT NULL,
 	Descricao VARCHAR(128) NOT NULL,
@@ -7,9 +10,13 @@ CREATE TABLE [Item](
 
 CREATE TABLE [Ataque](
 	Nome VARCHAR(32) NOT NULL,
-	Poder VARCHAR(32) NOT NULL,
+	Tipo Typing NOT NULL,
+	Poder INT,
 	Accuracy INT NOT NULL,
-	Categoria VARCHAR(32) NOT NULL,
+	Categoria Category NOT NULL,
+
+	CONSTRAINT CHK_Tipo CHECK (Tipo IN ('Normal','Fire','Water','Electric','Grass','Ice','Fighting','Poison','Ground','Flying','Psychic','Bug','Rock','Ghost','Dragon','Dark','Steel')),
+	CONSTRAINT CHK_Categoria CHECK (Categoria IN ('Physical', 'Special', 'Status')),
 
 	PRIMARY KEY (Nome)
 );
@@ -17,19 +24,22 @@ CREATE TABLE [Ataque](
 CREATE TABLE [Pokemons](
 	ID INT NOT NULL,
 	Nome VARCHAR(32) NOT NULL,
-	Imagem VARCHAR(256) NOT NULL,
+	Imagem VARCHAR(256) NOT NULL, --como é um ficheiro, não sei se é um tipo VARCHAR
 	Tier VARCHAR(32) NOT NULL,
-	Tipo1 VARCHAR(32) NOT NULL,
-	Tipo2 VARCHAR(32) NOT NULL,
+	Tipo1 Typing NOT NULL,
+	Tipo2 Typing,
 
+	CONSTRAINT CHK_Tipo1 CHECK (Tipo1 IN ('Normal','Fire','Water','Electric','Grass','Ice','Fighting','Poison','Ground','Flying','Psychic','Bug','Rock','Ghost','Dragon','Dark','Steel')),
+	CONSTRAINT CHK_Tipo2 CHECK (Tipo2 IN ('Normal','Fire','Water','Electric','Grass','Ice','Fighting','Poison','Ground','Flying','Psychic','Bug','Rock','Ghost','Dragon','Dark','Steel')),
+	
 	PRIMARY KEY (ID)
 );
 
 CREATE TABLE [Pokemons_escolhidos](
 	ID INT NOT NULL,
 	Pokemons_ID INT NOT NULL,
-	Ataque_Nome VARCHAR(32) NOT NULL,
-	Item_Nome VARCHAR(32) NOT NULL,
+	Ataque_Nome VARCHAR(32) NOT NULL, --como cada pokemon tem 4 ataques, se calhar vamos precisar de 4 destas
+	Item_Nome VARCHAR(32),
 
 	PRIMARY KEY (ID),
 	FOREIGN KEY (Pokemons_ID) REFERENCES Pokemons(ID),
@@ -41,7 +51,7 @@ CREATE TABLE [Equipa_Pokemons](
 	ID INT NOT NULL,
 	Jogador_Nickname VARCHAR(32) NOT NULL,
 	Tier VARCHAR(32) NOT NULL,
-	Pokemons_escolhidos_ID INT NOT NULL,
+	Pokemons_escolhidos_ID INT NOT NULL, --como cada equipa tem 6 pokemons, se calhar vamos precisar de 6 destas
 
 	PRIMARY KEY (ID, Jogador_Nickname),
 	FOREIGN KEY (Jogador_Nickname) REFERENCES Jogador(Nickname),
@@ -51,7 +61,7 @@ CREATE TABLE [Equipa_Pokemons](
 CREATE TABLE [Jogador](
 	Nickname VARCHAR(32) NOT NULL,
 	W/L FLOAT NOT NULL,
-	Equipa_Pokemons_ID INT NOT NULL,
+	Equipa_Pokemons_ID INT NOT NULL, --como cada jogador vai ter talvez uma equipa para cada tier, se calhar vamos precisar de 3 (depende do nº de tiers que tivermos) destas 
 
 	PRIMARY KEY (Nickname),
 	FOREIGN KEY (Equipa_Pokemons_ID) REFERENCES Equipa_Pokemons(ID)
