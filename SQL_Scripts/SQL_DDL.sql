@@ -1,5 +1,6 @@
 CREATE TYPE Typing FROM VARCHAR(10);
 CREATE TYPE Category FROM VARCHAR(10);
+CREATE TYPE Tiers FROM VARCHAR(10);
 
 CREATE TABLE [Item](
 	Nome VARCHAR(32) NOT NULL,
@@ -25,12 +26,13 @@ CREATE TABLE [Pokemons](
 	ID INT NOT NULL,
 	Nome VARCHAR(32) NOT NULL,
 	Imagem VARCHAR(256) NOT NULL, --como é um ficheiro, não sei se é um tipo VARCHAR
-	Tier VARCHAR(32) NOT NULL,
 	Tipo1 Typing NOT NULL,
 	Tipo2 Typing,
+	Tier Tiers NOT NULL,
 
 	CONSTRAINT CHK_Tipo1 CHECK (Tipo1 IN ('Normal','Fire','Water','Electric','Grass','Ice','Fighting','Poison','Ground','Flying','Psychic','Bug','Rock','Ghost','Dragon','Dark','Steel')),
 	CONSTRAINT CHK_Tipo2 CHECK (Tipo2 IN ('Normal','Fire','Water','Electric','Grass','Ice','Fighting','Poison','Ground','Flying','Psychic','Bug','Rock','Ghost','Dragon','Dark','Steel')),
+	CONSTRAINT CHK_Tier CHECK (Tier IN ('Uber', 'OU', 'UU', 'PU', 'NU', 'RU')),
 	
 	PRIMARY KEY (ID)
 );
@@ -50,12 +52,13 @@ CREATE TABLE [Pokemons_escolhidos](
 CREATE TABLE [Equipa_Pokemons](
 	ID INT NOT NULL,
 	Jogador_Nickname VARCHAR(32) NOT NULL,
-	Tier VARCHAR(32) NOT NULL,
+	Tier Tiers NOT NULL,
 	Pokemons_escolhidos_ID INT NOT NULL, --como cada equipa tem 6 pokemons, se calhar vamos precisar de 6 destas
 
 	PRIMARY KEY (ID, Jogador_Nickname),
 	FOREIGN KEY (Jogador_Nickname) REFERENCES Jogador(Nickname),
 	FOREIGN KEY (Pokemons_escolhidos_ID) REFERENCES Pokemons_escolhidos(ID)
+	CONSTRAINT CHK_Tier CHECK (Tier IN ('Uber', 'OU', 'UU', 'PU', 'NU', 'RU')),
 );
 
 CREATE TABLE [Jogador](
@@ -113,11 +116,13 @@ CREATE TABLE [Partida](
 CREATE TABLE [Torneio](
 	ID INT NOT NULL,
 	Nome VARCHAR(32) NOT NULL,
-	Tier VARCHAR(32) NOT NULL,
+	Tier Tiers NOT NULL,
 	Data DATE NOT NULL,
 	Localizacao VARCHAR(32) NOT NULL,
 	Num_Max_Jogadores INT NOT NULL,
 	-- Tem varias partidas e varios jogadores
+
+	CONSTRAINT CHK_Tier CHECK (Tier IN ('Uber', 'OU', 'UU', 'PU', 'NU', 'RU')), --podemos tirar alguns para limitar a escolha mas estes são todos os que existem
 
 	PRIMARY KEY (ID),
 );
