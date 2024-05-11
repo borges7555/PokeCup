@@ -25,7 +25,7 @@ CREATE TABLE [Ataque](
 CREATE TABLE [Pokemons](
 	ID INT NOT NULL,
 	Nome VARCHAR(32) NOT NULL,
-	Imagem VARCHAR(256) NOT NULL, --como é um ficheiro, não sei se é um tipo VARCHAR
+	Imagem VARCHAR(256) NOT NULL,
 	Tipo1 Typing NOT NULL,
 	Tipo2 Typing,
 	Tier Tiers NOT NULL,
@@ -37,15 +37,21 @@ CREATE TABLE [Pokemons](
 	PRIMARY KEY (ID)
 );
 
-CREATE TABLE [Pokemons_escolhidos](
+CREATE TABLE [Pokemon_escolhido](
 	ID INT NOT NULL,
 	Pokemons_ID INT NOT NULL,
-	Ataque_Nome VARCHAR(32) NOT NULL, --como cada pokemon tem 4 ataques, se calhar vamos precisar de 4 destas
+	Ataque_Nome1 VARCHAR(32) NOT NULL,
+	Ataque_Nome2 VARCHAR(32) NOT NULL,
+	Ataque_Nome3 VARCHAR(32) NOT NULL,
+	Ataque_Nome4 VARCHAR(32) NOT NULL,
 	Item_Nome VARCHAR(32),
 
 	PRIMARY KEY (ID),
 	FOREIGN KEY (Pokemons_ID) REFERENCES Pokemons(ID),
-	FOREIGN KEY (Ataque_Nome) REFERENCES Ataque(Nome),
+	FOREIGN KEY (Ataque_Nome1) REFERENCES Ataque(Nome),
+	FOREIGN KEY (Ataque_Nome2) REFERENCES Ataque(Nome),
+	FOREIGN KEY (Ataque_Nome3) REFERENCES Ataque(Nome),
+	FOREIGN KEY (Ataque_Nome4) REFERENCES Ataque(Nome),
 	FOREIGN KEY (Item_Nome) REFERENCES Item(Nome)
 );
 
@@ -53,11 +59,21 @@ CREATE TABLE [Equipa_Pokemons](
 	ID INT NOT NULL,
 	Jogador_Nickname VARCHAR(32) NOT NULL,
 	Tier Tiers NOT NULL,
-	Pokemons_escolhidos_ID INT NOT NULL, --como cada equipa tem 6 pokemons, se calhar vamos precisar de 6 destas
+	Pokemons_escolhidos_ID1 INT NOT NULL,
+	Pokemons_escolhidos_ID2 INT NOT NULL,
+	Pokemons_escolhidos_ID3 INT NOT NULL,
+	Pokemons_escolhidos_ID4 INT NOT NULL,
+	Pokemons_escolhidos_ID5 INT NOT NULL,
+	Pokemons_escolhidos_ID6 INT NOT NULL,
 
 	PRIMARY KEY (ID, Jogador_Nickname),
 	FOREIGN KEY (Jogador_Nickname) REFERENCES Jogador(Nickname),
-	FOREIGN KEY (Pokemons_escolhidos_ID) REFERENCES Pokemons_escolhidos(ID)
+	FOREIGN KEY (Pokemons_escolhidos_ID1) REFERENCES Pokemon_escolhido(ID)
+	FOREIGN KEY (Pokemons_escolhidos_ID2) REFERENCES Pokemon_escolhido(ID)
+	FOREIGN KEY (Pokemons_escolhidos_ID3) REFERENCES Pokemon_escolhido(ID)
+	FOREIGN KEY (Pokemons_escolhidos_ID4) REFERENCES Pokemon_escolhido(ID)
+	FOREIGN KEY (Pokemons_escolhidos_ID5) REFERENCES Pokemon_escolhido(ID)
+	FOREIGN KEY (Pokemons_escolhidos_ID6) REFERENCES Pokemon_escolhido(ID)
 	CONSTRAINT CHK_Tier CHECK (Tier IN ('Uber', 'OU', 'UU', 'PU', 'NU', 'RU')),
 );
 
