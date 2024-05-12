@@ -80,7 +80,6 @@ CREATE TABLE [Equipa_Pokemons](
 CREATE TABLE [Jogador](
 	Nickname VARCHAR(32) NOT NULL,
 	W/L FLOAT NOT NULL,
-	Equipa_Pokemons_ID INT NOT NULL, --como cada jogador vai ter talvez uma equipa para cada tier, se calhar vamos precisar de 3 (depende do nº de tiers que tivermos) destas 
 
 	PRIMARY KEY (Nickname),
 	FOREIGN KEY (Equipa_Pokemons_ID) REFERENCES Equipa_Pokemons(ID)
