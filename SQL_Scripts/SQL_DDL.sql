@@ -13,7 +13,7 @@ CREATE TABLE [Ataque](
 	Nome VARCHAR(32) NOT NULL,
 	Tipo Typing NOT NULL,
 	Poder INT,
-	Accuracy INT NOT NULL,
+	Accuracy INT,
 	Categoria Category NOT NULL,
 
 	CONSTRAINT CHK_Tipo CHECK (Tipo IN ('Normal','Fire','Water','Electric','Grass','Ice','Fighting','Poison','Ground','Flying','Psychic','Bug','Rock','Ghost','Dragon','Dark','Steel')),
@@ -38,7 +38,7 @@ CREATE TABLE [Pokemons](
 );
 
 CREATE TABLE [Pokemon_escolhido](
-	ID INT NOT NULL,
+	ID INT IDENTITY(1,1), --incrementa o ID cada vez que há uma entrada nova automaticamente
 	Pokemons_ID INT NOT NULL,
 	Ataque_Nome1 VARCHAR(32) NOT NULL,
 	Ataque_Nome2 VARCHAR(32) NOT NULL,
@@ -56,7 +56,7 @@ CREATE TABLE [Pokemon_escolhido](
 );
 
 CREATE TABLE [Equipa_Pokemons](
-	ID INT NOT NULL,
+	ID INT IDENTITY(1,1),
 	Jogador_Nickname VARCHAR(32) NOT NULL,
 	Tier Tiers NOT NULL,
 	Pokemons_escolhidos_ID1 INT NOT NULL,
@@ -68,12 +68,12 @@ CREATE TABLE [Equipa_Pokemons](
 
 	PRIMARY KEY (ID, Jogador_Nickname),
 	FOREIGN KEY (Jogador_Nickname) REFERENCES Jogador(Nickname),
-	FOREIGN KEY (Pokemons_escolhidos_ID1) REFERENCES Pokemon_escolhido(ID)
-	FOREIGN KEY (Pokemons_escolhidos_ID2) REFERENCES Pokemon_escolhido(ID)
-	FOREIGN KEY (Pokemons_escolhidos_ID3) REFERENCES Pokemon_escolhido(ID)
-	FOREIGN KEY (Pokemons_escolhidos_ID4) REFERENCES Pokemon_escolhido(ID)
-	FOREIGN KEY (Pokemons_escolhidos_ID5) REFERENCES Pokemon_escolhido(ID)
-	FOREIGN KEY (Pokemons_escolhidos_ID6) REFERENCES Pokemon_escolhido(ID)
+	FOREIGN KEY (Pokemons_escolhidos_ID1) REFERENCES Pokemon_escolhido(ID),
+	FOREIGN KEY (Pokemons_escolhidos_ID2) REFERENCES Pokemon_escolhido(ID),
+	FOREIGN KEY (Pokemons_escolhidos_ID3) REFERENCES Pokemon_escolhido(ID),
+	FOREIGN KEY (Pokemons_escolhidos_ID4) REFERENCES Pokemon_escolhido(ID),
+	FOREIGN KEY (Pokemons_escolhidos_ID5) REFERENCES Pokemon_escolhido(ID),
+	FOREIGN KEY (Pokemons_escolhidos_ID6) REFERENCES Pokemon_escolhido(ID),
 	CONSTRAINT CHK_Tier CHECK (Tier IN ('Uber', 'OU', 'UU', 'PU', 'NU', 'RU')),
 );
 
@@ -82,7 +82,6 @@ CREATE TABLE [Jogador](
 	W/L FLOAT NOT NULL,
 
 	PRIMARY KEY (Nickname),
-	FOREIGN KEY (Equipa_Pokemons_ID) REFERENCES Equipa_Pokemons(ID)
 );
 
 CREATE TABLE [Ronda](
@@ -129,7 +128,7 @@ CREATE TABLE [Partida](
 );
 
 CREATE TABLE [Torneio](
-	ID INT NOT NULL,
+	ID INT IDENTITY(1,1),
 	Nome VARCHAR(32) NOT NULL,
 	Tier Tiers NOT NULL,
 	Data DATE NOT NULL,
