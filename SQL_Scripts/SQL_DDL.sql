@@ -55,6 +55,13 @@ CREATE TABLE [Pokemon_escolhido](
 	FOREIGN KEY (Item_Nome) REFERENCES Item(Nome)
 );
 
+CREATE TABLE [Jogador](
+	Nickname VARCHAR(32) NOT NULL,
+	W_L FLOAT NOT NULL,
+
+	PRIMARY KEY (Nickname),
+);
+
 CREATE TABLE [Equipa_Pokemons](
 	ID INT IDENTITY(1,1),
 	Jogador_Nickname VARCHAR(32) NOT NULL,
@@ -77,24 +84,18 @@ CREATE TABLE [Equipa_Pokemons](
 	CONSTRAINT CHK_Tier CHECK (Tier IN ('Uber', 'OU', 'UU', 'PU', 'NU', 'RU')),
 );
 
-CREATE TABLE [Jogador](
-	Nickname VARCHAR(32) NOT NULL,
-	W/L FLOAT NOT NULL,
+CREATE TABLE [Torneio](
+	ID INT IDENTITY(1,1),
+	Nome VARCHAR(32) NOT NULL,
+	Tier Tiers NOT NULL,
+	Data DATE NOT NULL,
+	Localizacao VARCHAR(32) NOT NULL,
+	Num_Max_Jogadores INT NOT NULL,
+	-- Tem varias partidas e varios jogadores
 
-	PRIMARY KEY (Nickname),
-);
-
-CREATE TABLE [Ronda](
-	ID INT NOT NULL,
-	Numero INT NOT NULL,
-	Num_Pokemons_Vivos_J1 INT NOT NULL,
-	Num_Pokemons_Vivos_J2 INT NOT NULL,
-	Partida_Numero INT NOT NULL,
-	Jogador_Nickname_Vencedor VARCHAR(32) NOT NULL,
+	--CONSTRAINT CHK_Tier CHECK (Tier IN ('Uber', 'OU', 'UU', 'PU', 'NU', 'RU')), --podemos tirar alguns para limitar a escolha mas estes são todos os que existem
 
 	PRIMARY KEY (ID),
-	FOREIGN KEY (Partida_Numero) REFERENCES Partida(Numero),
-	FOREIGN KEY (Jogador_Nickname_Vencedor) REFERENCES Jogador(Nickname)
 );
 
 CREATE TABLE [Resultado_Final](
@@ -110,35 +111,28 @@ CREATE TABLE [Resultado_Final](
 CREATE TABLE [Partida](
 	Numero INT NOT NULL,
 	Torneio_ID INT NOT NULL,
-	Ronda_ID_Ronda_1 INT NOT NULL,
-	Ronda_ID_Ronda_2 INT NOT NULL,
-	Ronda_ID_Ronda_3 INT NOT NULL,
 	Resultado_Final_Partida_Numero INT NOT NULL,
 	Jogador_Nickname_1 VARCHAR(32) NOT NULL,
 	Jogador_Nickname_2 VARCHAR(32) NOT NULL,
 
-	PRIMARY KEY (Numero, Torneio_ID),
+	PRIMARY KEY (Numero),
 	FOREIGN KEY (Torneio_ID) REFERENCES Torneio(ID),
-	FOREIGN KEY (Ronda_ID_Ronda_1) REFERENCES Ronda(ID),
-	FOREIGN KEY (Ronda_ID_Ronda_2) REFERENCES Ronda(ID),
-	FOREIGN KEY (Ronda_ID_Ronda_3) REFERENCES Ronda(ID),
 	FOREIGN KEY (Resultado_Final_Partida_Numero) REFERENCES Resultado_Final(Partida_Numero),
 	FOREIGN KEY (Jogador_Nickname_1) REFERENCES Jogador(Nickname),
 	FOREIGN KEY (Jogador_Nickname_2) REFERENCES Jogador(Nickname)
 );
 
-CREATE TABLE [Torneio](
-	ID INT IDENTITY(1,1),
-	Nome VARCHAR(32) NOT NULL,
-	Tier Tiers NOT NULL,
-	Data DATE NOT NULL,
-	Localizacao VARCHAR(32) NOT NULL,
-	Num_Max_Jogadores INT NOT NULL,
-	-- Tem varias partidas e varios jogadores
-
-	CONSTRAINT CHK_Tier CHECK (Tier IN ('Uber', 'OU', 'UU', 'PU', 'NU', 'RU')), --podemos tirar alguns para limitar a escolha mas estes são todos os que existem
+CREATE TABLE [Ronda](
+	ID INT NOT NULL,
+	Numero INT NOT NULL,
+	Num_Pokemons_Vivos_J1 INT NOT NULL,
+	Num_Pokemons_Vivos_J2 INT NOT NULL,
+	Partida_Numero INT NOT NULL,
+	Jogador_Nickname_Vencedor VARCHAR(32) NOT NULL,
 
 	PRIMARY KEY (ID),
+	FOREIGN KEY (Partida_Numero) REFERENCES Partida(Numero),
+	FOREIGN KEY (Jogador_Nickname_Vencedor) REFERENCES Jogador(Nickname)
 );
 
 CREATE TABLE [Torneio_Partida](
