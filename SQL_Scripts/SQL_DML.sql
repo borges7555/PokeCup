@@ -1,7 +1,4 @@
-USE PokeCup;
-GO
-
-INSERT INTO Item VALUES
+INSERT INTO PokeCup_Item VALUES
     ('Air Balloon','When held by a Pokémon, the Pokémon will float into the air. When the holder is attacked, this item will burst.'),
     ('Choice Band','Raises Attack, but only one move can be used.'),
     ('Choice Scarf','Raises Speed, but only one move can be used.'),
@@ -16,7 +13,7 @@ INSERT INTO Item VALUES
     ('Toxic Orb','An item to be held by a Pokémon. It is a bizarre orb that badly poisons the holder in battle.'),
     ('Wise Glasses','Increases the power of Special-category moves.');
 
-INSERT INTO Ataque VALUES
+INSERT INTO PokeCup_Ataque VALUES
     ('Bug Buzz','Bug',90,100,'Special'),
     ('X-Scissor','Bug',80,100,'Physical'),
     ('U-turn','Bug',70,100,'Physical'),
@@ -75,7 +72,7 @@ INSERT INTO Ataque VALUES
     ('Aqua Tail','Water',90,90,'Physical'),
     ('Hydro Pump','Water',120,80,'Special');
 
-INSERT INTO Pokemons VALUES
+INSERT INTO PokeCup_Pokemons VALUES
     (494,'Victini','../pokemon_images/494.png','Psychic','Fire','UU'),
     (497,'Serperior','../pokemon_images/497.png','Grass',NULL,'NU'),
     (500,'Emboar','../pokemon_images/500.png','Fire','Fighting','RU'),
@@ -125,25 +122,32 @@ INSERT INTO Pokemons VALUES
     (648,'Meloetta','../pokemon_images/648.png','Normal','Psychic','UU'),
     (649,'Genesect','../pokemon_images/649.png','Bug','Steel','Uber');
 
-INSERT INTO Jogador VALUES
+INSERT INTO PokeCup_Jogador VALUES
     ('Borges', 0);
 
-INSERT INTO Pokemon_escolhido VALUES
-    (571,'Night Daze','Focus Blast','Hyper Voice','Nasty Plot','Focus Sash'),
-    (612,'Outrage','Earthquake','Brick Break','X-Scissor','Choice Band'),
-    (647,'Focus Blast','Hydro Pump','Calm Mind','Protect','Expert Belt'),
-    (555,'Flare Blitz','Earthquake','Stone Edge','Zen Headbutt','Life Orb'),
-    (596,'Thunder','Bug Buzz','Energy Ball','Thunderbolt','Choice Specs'),
-    (530,'Earthquake','X-Scissor','Rock Slide','Swords Dance','Air Balloon');
+INSERT INTO PokeCup_PokemonEscolhido VALUES
+    --('Zoroark','Night Daze','Focus Blast','Hyper Voice','Nasty Plot','Focus Sash','Borges'),
+    --('Haxorus','Outrage','Earthquake','Brick Break','X-Scissor','Choice Band','Borges'),
+    --('Keldeo','Focus Blast','Hydro Pump','Calm Mind','Protect','Expert Belt','Borges'),
+    --('Darmanitan','Flare Blitz','Earthquake','Stone Edge','Zen Headbutt','Life Orb','Borges'),
+    --('Galvantula','Thunder','Bug Buzz','Energy Ball','Thunderbolt','Choice Specs','Borges'),
+    --('Excadrill','Earthquake','X-Scissor','Rock Slide','Swords Dance','Air Balloon','Borges'),
+	('Reshiram','Overheat','Flamethrower','Draco Meteor','Dragon Pulse','Choice Specs','Borges'),
+	('Zekrom','Outrage','Draco Meteor','Wild Charge','Crunch','Choice Band','Borges'),
+	('Genesect','U-turn','Bug Buzz','Flash Cannon','Energy Ball','Focus Sash','Borges'),
+	('Landorus','Earthquake','U-turn','Outrage','Focus Blast','Leftovers','Borges'),
+	('Thundurus','Thunder','Hurricane','U-turn','Focus Blast','Life Orb','Borges'),
+	('Kyurem','Draco Meteor','Outrage','Focus Blast','Ice Beam','Choice Scarf','Borges');
 
-INSERT INTO Equipa_Pokemons VALUES
-    ('Borges','OU',2,3,4,5,6,7);
+INSERT INTO PokeCup_EquipaPokemons VALUES
+    --('Borges','OU',1,2,3,4,5,6),
+	('Borges','Uber',15,16,17,18,19,20);
 
 
---testes
-SELECT * FROM Item;
-SELECT * FROM Ataque;
-SELECT * FROM Pokemons;
-SELECT * FROM Jogador;
-SELECT * FROM Pokemon_escolhido;
-SELECT * FROM Equipa_Pokemons;
+
+SELECT * FROM PokeCup_Item;
+SELECT * FROM PokeCup_Ataque;
+SELECT * FROM PokeCup_Pokemons;
+SELECT * FROM PokeCup_Jogador;
+SELECT * FROM PokeCup_PokemonEscolhido;
+SELECT * FROM PokeCup_EquipaPokemons;
