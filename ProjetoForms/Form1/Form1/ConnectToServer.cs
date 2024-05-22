@@ -12,9 +12,9 @@ using System.Data.SqlClient;
 
 namespace Form1
 {
-    public partial class Form5 : Form
+    public partial class ConnectToServer : Form
     {
-        public Form5()
+        public ConnectToServer()
         {
             InitializeComponent();
         }
@@ -47,9 +47,9 @@ namespace Form1
                     MessageBox.Show("Successful connection to database " + CN.Database + " on the " +
                                     CN.DataSource + " server", "Connection Test", MessageBoxButtons.OK);
 
-                    Form3 form3 = new Form3();
-                    form3.Show();
-                    this.Hide(); // Ou this.Close(); se quiser fechar o Form5
+                    //HomePage form3 = new HomePage();
+                    //form3.Show();
+                    //this.Hide(); // Ou this.Close(); se quiser fechar o Form5
                 }
             }
             catch (Exception ex)

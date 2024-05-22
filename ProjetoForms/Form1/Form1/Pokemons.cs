@@ -7,9 +7,9 @@ using System.Xml.Linq;
 
 namespace Form1
 {
-    public partial class Form2 : Form
+    public partial class Pokemons : Form
     {
-        public Form2()
+        public Pokemons()
         {
             InitializeComponent();
         }
@@ -38,6 +38,21 @@ namespace Form1
             {
                 MessageBox.Show("Erro ao carregar dados: " + ex.Message);
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            AddPokemonForm addPokemonForm = new AddPokemonForm();
+            if (addPokemonForm.ShowDialog() == DialogResult.OK)
+            {
+                // Lógica para adicionar o Pokémon ao seu sistema
+                // Utilize as propriedades públicas do addPokemonForm para obter os valores
+            }
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Form1
 {
-    partial class Form5
+    partial class ConnectToServer
     {
         /// <summary>
         /// Required designer variable.
