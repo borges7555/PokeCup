@@ -24,6 +24,18 @@ RETURN (
 
 SELECT * FROM GetPokemonsFromTier('Uber');
 
+-- get pokemons from jogador and tier, takes the getpokemons from user and joins the name of the pokemon with the pokemons table to know the tier
+CREATE FUNCTION GetPokemonsFromJogadorAndTier(@jogador_nickname VARCHAR(32), @tier TIERS) RETURNS TABLE AS
+RETURN (
+    SELECT A.Pokemons_Nome,
+        B.Tier
+    FROM PokeCup_PokemonEscolhido AS A
+    JOIN PokeCup_Pokemons AS B ON A.Pokemons_Nome = B.Nome
+    WHERE A.Jogador_Nickname = @jogador_nickname AND B.Tier = @tier
+);
+
+SELECT * FROM GetPokemonsFromJogadorAndTier('Borges', 'OU');
+
 CREATE FUNCTION GetEquipaFromJogador(@nickname VARCHAR(32)) RETURNS TABLE AS
 RETURN (
     SELECT 

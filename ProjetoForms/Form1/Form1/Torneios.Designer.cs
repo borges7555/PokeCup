@@ -1,6 +1,6 @@
 ﻿namespace Form1
 {
-    partial class Torneio
+    partial class Torneios
     {
         /// <summary>
         /// Required designer variable.
@@ -29,40 +29,19 @@
         private void InitializeComponent()
         {
             button5 = new Button();
-            button3 = new Button();
-            button1 = new Button();
             label4 = new Label();
+            dataGridView1 = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // button5
             // 
-            button5.Location = new Point(40, 125);
-            button5.Margin = new Padding(3, 4, 3, 4);
+            button5.Location = new Point(520, 32);
             button5.Name = "button5";
-            button5.Size = new Size(179, 47);
+            button5.Size = new Size(157, 35);
             button5.TabIndex = 17;
-            button5.Text = "Selecionar Tier";
+            button5.Text = "Criar Torneio";
             button5.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            button3.Location = new Point(40, 357);
-            button3.Margin = new Padding(3, 4, 3, 4);
-            button3.Name = "button3";
-            button3.Size = new Size(179, 47);
-            button3.TabIndex = 15;
-            button3.Text = "OK";
-            button3.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(40, 217);
-            button1.Margin = new Padding(3, 4, 3, 4);
-            button1.Name = "button1";
-            button1.Size = new Size(179, 47);
-            button1.TabIndex = 13;
-            button1.Text = "Selecionar Jogadores";
-            button1.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -70,23 +49,36 @@
             label4.BackColor = SystemColors.Control;
             label4.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = SystemColors.ControlText;
-            label4.Location = new Point(40, 33);
+            label4.Location = new Point(35, 25);
             label4.Name = "label4";
-            label4.Size = new Size(228, 46);
+            label4.Size = new Size(127, 37);
             label4.TabIndex = 12;
-            label4.Text = "Criar Torneio";
+            label4.Text = "Torneios";
             // 
-            // Form7
+            // dataGridView1
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(38, 91);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.RowTemplate.Height = 24;
+            dataGridView1.Size = new Size(639, 218);
+            dataGridView1.TabIndex = 18;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            // 
+            // Torneios
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(700, 338);
+            Controls.Add(dataGridView1);
             Controls.Add(button5);
-            Controls.Add(button3);
-            Controls.Add(button1);
             Controls.Add(label4);
-            Name = "Form7";
+            Margin = new Padding(3, 2, 3, 2);
+            Name = "Torneios";
             Text = "Form7";
+            Load += Form7_Load;
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -94,8 +86,7 @@
         #endregion
 
         private Button button5;
-        private Button button3;
-        private Button button1;
         private Label label4;
+        private DataGridView dataGridView1;
     }
 }

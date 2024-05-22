@@ -43,11 +43,54 @@ VALUES(
 )
 END
 
-EXEC CreatePokemonEscolhido
-	@nome = 'Serperior',
-	@ataque1 = 'Leaf Storm',
-	@ataque2 = 'Energy Ball',
-	@ataque3 = 'Dragon Pulse',
-	@ataque4 = 'Protect',
-	@item = 'Wise Glasses',
-	@jogador = 'Borges';
+-- EXEC CreatePokemonEscolhido
+-- 	@nome = 'Serperior',
+-- 	@ataque1 = 'Leaf Storm',
+-- 	@ataque2 = 'Energy Ball',
+-- 	@ataque3 = 'Dragon Pulse',
+-- 	@ataque4 = 'Protect',
+-- 	@item = 'Wise Glasses',
+-- 	@jogador = 'Borges';
+
+-- create equipa de pokemons
+CREATE PROCEDURE CreateEquipaPokemons
+	@jogador VARCHAR(32),
+	@tier Tiers,
+	@pokemon1 INT,
+	@pokemon2 INT,
+	@pokemon3 INT,
+	@pokemon4 INT,
+	@pokemon5 INT,
+	@pokemon6 INT
+AS BEGIN INSERT INTO PokeCup_EquipaPokemons(
+	Jogador_Nickname,
+	Tier,
+	Pokemons_escolhidos_ID1,
+	Pokemons_escolhidos_ID2,
+	Pokemons_escolhidos_ID3,
+	Pokemons_escolhidos_ID4,
+	Pokemons_escolhidos_ID5,
+	Pokemons_escolhidos_ID6
+)
+VALUES(
+	@jogador,
+	@tier,
+	@pokemon1,
+	@pokemon2,
+	@pokemon3,
+	@pokemon4,
+	@pokemon5,
+	@pokemon6
+)
+END
+
+EXEC CreateEquipaPokemons
+	@jogador = 'testenick',
+	@tier = 'OU',
+	@pokemon1 = 1,
+	@pokemon2 = 2,
+	@pokemon3 = 3,
+	@pokemon4 = 4,
+	@pokemon5 = 5,
+	@pokemon6 = 6;
+

@@ -42,7 +42,7 @@ namespace Form1
 
         private void btnForm2_Click(object sender, EventArgs e)
         {
-            LoadForm(new Torneio());
+            LoadForm(new Torneios());
         }
 
         private void btnForm3_Click(object sender, EventArgs e)

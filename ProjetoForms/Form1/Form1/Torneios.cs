@@ -11,16 +11,11 @@ using System.Windows.Forms;
 
 namespace Form1
 {
-    public partial class Equipas : Form
+    public partial class Torneios : Form
     {
-        public Equipas()
+        public Torneios()
         {
             InitializeComponent();
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -28,14 +23,14 @@ namespace Form1
 
         }
 
-        private void Form6_Load(object sender, EventArgs e)
+        private void Form7_Load(object sender, EventArgs e)
         {
             // Defina sua string de conexão aqui
             string connectionString = "Server=mednat.ieeta.pt\\SQLSERVER,8101;Database=p9g5;User Id=p9g5;Password=b62F@yZ$u@M%DB;";
 
 
             // Crie a consulta SQL
-            string query = "SELECT * FROM PokeCup_EquipaPokemons";
+            string query = "SELECT * FROM PokeCup_Jogador";
 
             try
             {
@@ -53,5 +48,6 @@ namespace Form1
                 MessageBox.Show("Erro ao carregar dados: " + ex.Message);
             }
         }
+
     }
 }
