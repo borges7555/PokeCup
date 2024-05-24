@@ -43,16 +43,15 @@ VALUES(
 )
 END
 
--- EXEC CreatePokemonEscolhido
--- 	@nome = 'Serperior',
--- 	@ataque1 = 'Leaf Storm',
--- 	@ataque2 = 'Energy Ball',
--- 	@ataque3 = 'Dragon Pulse',
--- 	@ataque4 = 'Protect',
--- 	@item = 'Wise Glasses',
--- 	@jogador = 'Borges';
+EXEC CreatePokemonEscolhido
+	@nome = 'Serperior',
+	@ataque1 = 'Leaf Storm',
+	@ataque2 = 'Energy Ball',
+	@ataque3 = 'Dragon Pulse',
+	@ataque4 = 'Protect',
+	@item = 'Wise Glasses',
+	@jogador = 'Borges';
 
--- create equipa de pokemons
 CREATE PROCEDURE CreateEquipaPokemons
 	@jogador VARCHAR(32),
 	@tier Tiers,
@@ -94,3 +93,149 @@ EXEC CreateEquipaPokemons
 	@pokemon5 = 5,
 	@pokemon6 = 6;
 
+CREATE PROCEDURE CreateTorneio
+	@nome VARCHAR(32),
+	@tier Tiers,
+	@data DATE,
+	@localizacao VARCHAR(32),
+	@nmax INT
+AS BEGIN INSERT INTO PokeCup_Torneio(
+	Nome,
+	Tier,
+	Data,
+	Localizacao,
+	Num_Max_Jogadores
+)
+VALUES(
+	@nome,
+	@tier,
+	@data,
+	@localizacao,
+	@nmax
+)
+END
+
+EXEC CreateTorneio
+	@nome = 'Torneio Teste 2',
+	@tier = 'OU',
+	@data = '2024-05-25',
+	@localizacao = 'Porto',
+	@nmax = 4;
+
+CREATE PROCEDURE AddJogadorToTorneio
+	@torneioid INT,
+	@jogador VARCHAR(32)
+AS BEGIN INSERT INTO PokeCup_TorneioJogador(
+	Torneio_ID,
+	Jogador_Nickname
+)
+VALUES(
+	@torneioid,
+	@jogador
+)
+END
+
+EXEC AddJogadorToTorneio
+	@torneioid = 1,
+	@jogador = 'Borges';
+
+CREATE PROCEDURE CreatePartida
+	@num INT,
+	@torneioid INT,
+	@jogador1 VARCHAR(32),
+	@jogador2 VARCHAR(32)
+AS BEGIN INSERT INTO PokeCup_Partida(
+	Numero,
+	Torneio_ID,
+	Jogador_Nickname_1,
+	Jogador_Nickname_2
+)
+VALUES(
+	@num,
+	@torneioid,
+	@jogador1,
+	@jogador2
+)
+END	
+
+EXEC CreatePartida
+	@num = 1,
+	@torneioid = 1,
+	@jogador1 = 'Borges',
+	@jogador2 = 'Joaquim';
+
+CREATE PROCEDURE CreateRonda
+	@num INT,
+	@num_poke_vivos1 INT,
+	@num_poke_vivos2 INT,
+	@partidanumero INT,
+	@torneioid INT,
+	@jogador_vencedor VARCHAR(32)
+AS BEGIN INSERT INTO PokeCup_Ronda(
+	Numero,
+	Num_Pokemons_Vivos_J1,
+	Num_Pokemons_Vivos_J2,
+	Partida_Numero,
+	Torneio_ID,
+	Jogador_Nickname_Vencedor
+)
+VALUES(
+	@num,
+	@num_poke_vivos1,
+	@num_poke_vivos2,
+	@partidanumero,
+	@torneioid,
+	@jogador_vencedor
+)
+END
+
+EXEC CreateRonda
+	@num = 1,
+	@num_poke_vivos1 = 1,
+	@num_poke_vivos2 = 0,
+	@partidanumero = 1,
+	@torneioid = 1,
+	@jogador_vencedor = 'Borges'; 
+EXEC CreateRonda
+	@num = 2,
+	@num_poke_vivos1 = 0,
+	@num_poke_vivos2 = 2,
+	@partidanumero = 1,
+	@torneioid = 1,
+	@jogador_vencedor = 'Joaquim'; 
+EXEC CreateRonda
+	@num = 3,
+	@num_poke_vivos1 = 1,
+	@num_poke_vivos2 = 0,
+	@partidanumero = 1,
+	@torneioid = 1,
+	@jogador_vencedor = 'Borges'; 
+
+CREATE PROCEDURE CreateResultadoFinal
+	@partidanumero INT,
+	@torneioid INT,
+	@jogadorvencedor VARCHAR(32),
+	@rondas_ganhas1 INT,
+	@rondas_ganhas2 INT
+AS BEGIN INSERT INTO PokeCup_ResultadoFinal(
+	Partida_Numero,
+	Torneio_ID,
+	Jogador_Nickname_Vencedor,
+	Num_Rondas_Ganhas_J1,
+	Num_Rondas_Ganhas_J2
+)
+VALUES(
+	@partidanumero,
+	@torneioid,
+	@jogadorvencedor,
+	@rondas_ganhas1,
+	@rondas_ganhas2
+)
+END
+
+EXEC CreateResultadoFinal
+	@partidanumero = 1,
+	@torneioid = 1,
+	@jogadorvencedor = 'Borges',
+	@rondas_ganhas1 = 2,
+	@rondas_ganhas2 = 1;

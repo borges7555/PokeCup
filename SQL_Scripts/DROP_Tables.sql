@@ -1,5 +1,4 @@
 DROP TABLE IF EXISTS PokeCup_TorneioJogador;
-DROP TABLE IF EXISTS PokeCup_TorneioPartida;
 DROP TABLE IF EXISTS PokeCup_Ronda;
 DROP TABLE IF EXISTS PokeCup_Partida;
 DROP TABLE IF EXISTS PokeCup_ResultadoFinal;
@@ -15,3 +14,5 @@ DROP FUNCTION IF EXISTS GetPokemonsEscolhidos;
 DROP FUNCTION IF EXISTS GetPokemonsFromTier;
 DROP FUNCTION IF EXISTS GetEquipaFromJogador;
 DROP FUNCTION IF EXISTS GetEquipaFromJogadorFromTier;
+
+DROP PROCEDURE IF EXISTS CreatePartida;

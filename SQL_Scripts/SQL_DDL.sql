@@ -100,50 +100,40 @@ CREATE TABLE [PokeCup_Torneio](
 	PRIMARY KEY (ID),
 );
 
+CREATE TABLE [PokeCup_Partida](
+	Numero INT NOT NULL,
+	Torneio_ID INT NOT NULL,
+	Jogador_Nickname_1 VARCHAR(32) NOT NULL,
+	Jogador_Nickname_2 VARCHAR(32) NOT NULL,
+
+	PRIMARY KEY (Numero, Torneio_ID),
+	FOREIGN KEY (Torneio_ID) REFERENCES PokeCup_Torneio(ID),
+	FOREIGN KEY (Jogador_Nickname_1) REFERENCES PokeCup_Jogador(Nickname),
+	FOREIGN KEY (Jogador_Nickname_2) REFERENCES PokeCup_Jogador(Nickname)
+);
+
 CREATE TABLE [PokeCup_ResultadoFinal](
 	Partida_Numero INT NOT NULL,
+	Torneio_ID INT NOT NULL,
 	Jogador_Nickname_Vencedor VARCHAR(32) NOT NULL,
 	Num_Rondas_Ganhas_J1 INT NOT NULL,
 	Num_Rondas_Ganhas_J2 INT NOT NULL,
 
 	PRIMARY KEY (Partida_Numero),
-	FOREIGN KEY (Jogador_Nickname_Vencedor) REFERENCES PokeCup_Jogador(Nickname)
-);
-
-CREATE TABLE [PokeCup_Partida](
-	Numero INT NOT NULL,
-	Torneio_ID INT NOT NULL,
-	Resultado_Final_Partida_Numero INT NOT NULL,
-	Jogador_Nickname_1 VARCHAR(32) NOT NULL,
-	Jogador_Nickname_2 VARCHAR(32) NOT NULL,
-
-	PRIMARY KEY (Numero),
-	FOREIGN KEY (Torneio_ID) REFERENCES PokeCup_Torneio(ID),
-	FOREIGN KEY (Resultado_Final_Partida_Numero) REFERENCES PokeCup_ResultadoFinal(Partida_Numero),
-	FOREIGN KEY (Jogador_Nickname_1) REFERENCES PokeCup_Jogador(Nickname),
-	FOREIGN KEY (Jogador_Nickname_2) REFERENCES PokeCup_Jogador(Nickname)
+	FOREIGN KEY (Jogador_Nickname_Vencedor) REFERENCES PokeCup_Jogador(Nickname),
+	FOREIGN KEY (Partida_Numero, Torneio_ID) REFERENCES PokeCup_Partida(Numero, Torneio_ID),
 );
 
 CREATE TABLE [PokeCup_Ronda](
-	ID INT NOT NULL,
 	Numero INT NOT NULL,
 	Num_Pokemons_Vivos_J1 INT NOT NULL,
 	Num_Pokemons_Vivos_J2 INT NOT NULL,
 	Partida_Numero INT NOT NULL,
+	Torneio_ID INT NOT NULL,
 	Jogador_Nickname_Vencedor VARCHAR(32) NOT NULL,
 
-	PRIMARY KEY (ID),
-	FOREIGN KEY (Partida_Numero) REFERENCES PokeCup_Partida(Numero),
+	FOREIGN KEY (Partida_Numero, Torneio_ID) REFERENCES PokeCup_Partida(Numero, Torneio_ID),
 	FOREIGN KEY (Jogador_Nickname_Vencedor) REFERENCES PokeCup_Jogador(Nickname)
-);
-
-CREATE TABLE [PokeCup_TorneioPartida](
-	Torneio_ID INT NOT NULL,
-	Partida_Numero INT NOT NULL,
-
-	PRIMARY KEY (Torneio_ID, Partida_Numero),
-	FOREIGN KEY (Torneio_ID) REFERENCES PokeCup_Torneio(ID),
-	FOREIGN KEY (Partida_Numero) REFERENCES PokeCup_Partida(Numero)
 );
 
 CREATE TABLE [PokeCup_TorneioJogador](

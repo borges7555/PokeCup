@@ -132,16 +132,32 @@ INSERT INTO PokeCup_PokemonEscolhido VALUES
     --('Darmanitan','Flare Blitz','Earthquake','Stone Edge','Zen Headbutt','Life Orb','Borges'),
     --('Galvantula','Thunder','Bug Buzz','Energy Ball','Thunderbolt','Choice Specs','Borges'),
     --('Excadrill','Earthquake','X-Scissor','Rock Slide','Swords Dance','Air Balloon','Borges'),
-	('Reshiram','Overheat','Flamethrower','Draco Meteor','Dragon Pulse','Choice Specs','Borges'),
-	('Zekrom','Outrage','Draco Meteor','Wild Charge','Crunch','Choice Band','Borges'),
-	('Genesect','U-turn','Bug Buzz','Flash Cannon','Energy Ball','Focus Sash','Borges'),
-	('Landorus','Earthquake','U-turn','Outrage','Focus Blast','Leftovers','Borges'),
-	('Thundurus','Thunder','Hurricane','U-turn','Focus Blast','Life Orb','Borges'),
-	('Kyurem','Draco Meteor','Outrage','Focus Blast','Ice Beam','Choice Scarf','Borges');
+	--('Reshiram','Overheat','Flamethrower','Draco Meteor','Dragon Pulse','Choice Specs','Borges'),
+	--('Zekrom','Outrage','Draco Meteor','Wild Charge','Crunch','Choice Band','Borges'),
+	--('Genesect','U-turn','Bug Buzz','Flash Cannon','Energy Ball','Focus Sash','Borges'),
+	--('Landorus','Earthquake','U-turn','Outrage','Focus Blast','Leftovers','Borges'),
+	--('Thundurus','Thunder','Hurricane','U-turn','Focus Blast','Life Orb','Borges'),
+	--('Kyurem','Draco Meteor','Outrage','Focus Blast','Ice Beam','Choice Scarf','Borges'),
+	('Zoroark','Night Daze','Focus Blast','Hyper Voice','Nasty Plot','Focus Sash','Joaquim'),
+    ('Haxorus','Outrage','Earthquake','Brick Break','X-Scissor','Choice Band','Joaquim'),
+    ('Keldeo','Focus Blast','Hydro Pump','Calm Mind','Protect','Expert Belt','Joaquim'),
+    ('Darmanitan','Flare Blitz','Earthquake','Stone Edge','Zen Headbutt','Life Orb','Joaquim'),
+    ('Galvantula','Thunder','Bug Buzz','Energy Ball','Thunderbolt','Choice Specs','Joaquim'),
+    ('Excadrill','Earthquake','X-Scissor','Rock Slide','Swords Dance','Air Balloon','Joaquim'),
+	('Reshiram','Overheat','Flamethrower','Draco Meteor','Dragon Pulse','Choice Specs','Joaquim'),
+	('Zekrom','Outrage','Draco Meteor','Wild Charge','Crunch','Choice Band','Joaquim'),
+	('Genesect','U-turn','Bug Buzz','Flash Cannon','Energy Ball','Focus Sash','Joaquim'),
+	('Landorus','Earthquake','U-turn','Outrage','Focus Blast','Leftovers','Joaquim'),
+	('Thundurus','Thunder','Hurricane','U-turn','Focus Blast','Life Orb','Joaquim'),
+	('Kyurem','Draco Meteor','Outrage','Focus Blast','Ice Beam','Choice Scarf','Joaquim');
 
 INSERT INTO PokeCup_EquipaPokemons VALUES
     --('Borges','OU',1,2,3,4,5,6),
-	('Borges','Uber',15,16,17,18,19,20);
+	--('Borges','Uber',15,16,17,18,19,20),
+	('Joaquim','Uber',27,32,33,25,29,35);
+
+INSERT INTO PokeCup_Torneio VALUES
+	('Torneio Teste','Uber','2024-05-24','Aveiro',2);
 
 
 
@@ -151,3 +167,7 @@ SELECT * FROM PokeCup_Pokemons;
 SELECT * FROM PokeCup_Jogador;
 SELECT * FROM PokeCup_PokemonEscolhido;
 SELECT * FROM PokeCup_EquipaPokemons;
+SELECT * FROM PokeCup_Torneio;
+SELECT * FROM PokeCUp_Partida;
+SELECT * FROM PokeCUp_Ronda;
+SELECT * FROM PokeCUp_ResultadoFinal;
