@@ -21,6 +21,9 @@
             label2 = new Label();
             label3 = new Label();
             button1 = new Button();
+            dataGridView1 = new DataGridView();
+            label5 = new Label();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // comboBoxPlayer
@@ -110,11 +113,39 @@
             button1.Text = "+";
             button1.TextAlign = ContentAlignment.TopCenter;
             button1.UseVisualStyleBackColor = true;
-            button1.Click += new System.EventHandler(this.button1_Click);
+            button1.Click += button1_Click;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(379, 176);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.RowTemplate.Height = 24;
+            dataGridView1.Size = new Size(475, 221);
+            dataGridView1.TabIndex = 20;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.BackColor = SystemColors.Control;
+            label5.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.ForeColor = SystemColors.ControlText;
+            label5.Location = new Point(379, 102);
+            label5.Name = "label5";
+            label5.Size = new Size(183, 37);
+            label5.TabIndex = 21;
+            label5.Text = "Lista Equipas";
             // 
             // Equipas
             // 
-            ClientSize = new Size(544, 548);
+            AutoSize = true;
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            ClientSize = new Size(903, 548);
+            Controls.Add(label5);
+            Controls.Add(dataGridView1);
             Controls.Add(button1);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -127,6 +158,7 @@
             Name = "Equipas";
             Text = "Equipas";
             Load += Equipas_Load;
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -136,5 +168,7 @@
         private Label label2;
         private Label label3;
         private Button button1;
+        private DataGridView dataGridView1;
+        private Label label5;
     }
 }

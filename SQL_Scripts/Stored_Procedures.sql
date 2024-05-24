@@ -84,7 +84,7 @@ VALUES(
 END
 
 EXEC CreateEquipaPokemons
-	@jogador = 'testenick',
+	@jogador = 'Borges',
 	@tier = 'OU',
 	@pokemon1 = 1,
 	@pokemon2 = 2,

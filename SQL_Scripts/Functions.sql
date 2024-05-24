@@ -10,7 +10,7 @@ RETURN (
 	WHERE A.Jogador_Nickname = @jogador_nickname
 );
 
-SELECT * FROM GetPokemonsEscolhidos('Joaquim');
+SELECT * FROM GetPokemonsEscolhidos('Borges');
 
 CREATE FUNCTION GetPokemonsFromTier(@tier TIERS) RETURNS TABLE AS
 RETURN (
@@ -159,15 +159,23 @@ RETURN (
 
 SELECT * FROM GetEquipaFromJogadorFromTier('Borges', 'OU');
 
--- get pokemons from jogador and tier, takes the getpokemons from user and joins the name of the pokemon with the pokemons table to know the tier and returns the id of the pokemon and the tier and the name of the pokemon
+-- get pokemons from jogador and tier, takes the getpokemons from user and joins the name of the pokemon with the pokemons table to know the tier and also joins the name of the pokemon with the name in the table PokeCup_PokemonEscolhido to know is ID
 CREATE FUNCTION GetPokemonsFromJogadorAndTier(@jogador_nickname VARCHAR(32), @tier TIERS) RETURNS TABLE AS
 RETURN (
-    SELECT A.Pokemons_Nome,
-        B.Tier,
-        B.ID
-    FROM PokeCup_PokemonEscolhido AS A
-    JOIN PokeCup_Pokemons AS B ON A.Pokemons_Nome = B.Nome
-    WHERE A.Jogador_Nickname = @jogador_nickname AND B.Tier = @tier
+    SELECT 
+        P.Nome,
+        P.Imagem,
+        P.Tipo1,
+        P.Tipo2,
+        P.Tier,
+        PE.ID AS EscolhidoID
+    FROM 
+        PokeCup_Pokemons AS P
+    JOIN PokeCup_PokemonEscolhido AS PE ON P.Nome = PE.Pokemons_Nome
+    WHERE 
+        PE.Jogador_Nickname = @jogador_nickname AND P.Tier = @tier
 );
+
+
 
 SELECT * FROM GetPokemonsFromJogadorAndTier('Borges', 'OU');

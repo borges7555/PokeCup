@@ -7,11 +7,12 @@ namespace Form1
 {
     public partial class Equipas : Form
     {
-        private string connectionString = "Server=mednat.ieeta.pt\\SQLSERVER,8101;Database=p9g5;User Id=p9g5;Password=b62F@yZ$u@M%DB;";
+        private string connectionString = "Server=mednat.ieeta.pt\\\\SQLSERVER,8101;Database=p9g5;User Id=p9g5;Password=b62F@yZ$u@M%DB;";
 
         public Equipas()
         {
             InitializeComponent();
+            LoadTeams();
         }
 
         private void Equipas_Load(object sender, EventArgs e)
@@ -44,6 +45,23 @@ namespace Form1
             LoadPokemons();
         }
 
+        // Open PokemonForm
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (comboBoxTier.SelectedItem == null || string.IsNullOrEmpty(comboBoxTier.SelectedItem.ToString()))
+            {
+                MessageBox.Show("Please select a tier before proceeding.", "Tier Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string player = comboBoxPlayer.SelectedValue?.ToString() ?? "DefaultPlayer";
+            string tier = comboBoxTier.SelectedItem?.ToString() ?? "DefaultTier";
+            PokemonForm form = new PokemonForm(player, tier); // Pass the selected tier
+            form.Show(); // Or form.ShowDialog(); depending on the desired behavior
+        }
+
+
+
         private void LoadPokemons()
         {
             if (comboBoxPlayer.SelectedValue == null || comboBoxTier.SelectedItem == null) return;
@@ -53,133 +71,81 @@ namespace Form1
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = $"SELECT * FROM GetPokemonsFromJogadorAndTier('{player}', '{tier}')"; // Adjusted query
+                string query = $"SELECT EscolhidoID, Nome FROM GetPokemonsFromJogadorAndTier('{player}', '{tier}')";
                 SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
                 DataTable pokemonsTable = new DataTable();
                 adapter.Fill(pokemonsTable);
 
-                // Debugging output to ensure DataTable is populated
-                Console.WriteLine($"Rows Count: {pokemonsTable.Rows.Count}");
-                foreach (DataRow row in pokemonsTable.Rows)
-                {
-                    Console.WriteLine($"{row["Pokemons_Nome"]}");
-                }
-
                 listBoxPokemons.DataSource = pokemonsTable;
-                listBoxPokemons.DisplayMember = "Pokemons_Nome";
-                listBoxPokemons.ValueMember = "Pokemons_Nome"; // Updated to match the actual column name
+                listBoxPokemons.DisplayMember = "Nome"; // Display Pokémon names
+                listBoxPokemons.ValueMember = "EscolhidoID"; // Use Pokémon IDs as values
             }
         }
 
         private void buttonCreateTeam_Click(object sender, EventArgs e)
         {
-            try
+            if (listBoxPokemons.SelectedItems.Count < 6)
             {
-                string player = comboBoxPlayer.SelectedValue?.ToString();
-                string tier = comboBoxTier.SelectedItem?.ToString();
+                MessageBox.Show("Please select 6 pokemons to create a team.");
+                return;
+            }
 
-                if (player == null || tier == null || listBoxPokemons.Items.Count != 6)
+            string player = comboBoxPlayer.SelectedValue.ToString();
+            string tier = comboBoxTier.SelectedItem.ToString();
+
+            // Collect the selected Pokemon IDs
+            var selectedPokemons = listBoxPokemons.SelectedItems.Cast<DataRowView>()
+                                     .Select(item => item["EscolhidoID"].ToString())
+                                     .ToArray();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("CreateEquipaPokemons", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@jogador", player);
+                command.Parameters.AddWithValue("@tier", tier);
+                for (int i = 0; i < 6; i++)
                 {
-                    MessageBox.Show("Please select a player, tier, and exactly 6 Pokémon.");
-                    return;
+                    command.Parameters.AddWithValue($"@pokemon{i + 1}", selectedPokemons[i]);
                 }
 
-                // Assuming listBoxPokemons contains Pokémon IDs as DataRowView
-                List<int> pokemonIds = new List<int>();
-
-                foreach (var item in listBoxPokemons.Items)
+                try
                 {
-                    if (item is DataRowView dataRowView)
-                    {
-                        var pokemonId = dataRowView["ID"]; // Correct column name for ID
-                        if (pokemonId != null && int.TryParse(pokemonId.ToString(), out int id))
-                        {
-                            pokemonIds.Add(id);
-                        }
-                        else
-                        {
-                            MessageBox.Show($"Invalid Pokémon ID format: {pokemonId}");
-                            return;
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show($"Invalid item type in list: {item.GetType()}");
-                        return;
-                    }
+                    command.ExecuteNonQuery();
+                    MessageBox.Show("Team created successfully!");
                 }
-
-                if (pokemonIds.Count != 6)
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Failed to retrieve all Pokémon IDs.");
-                    return;
+                    MessageBox.Show("Error creating team: " + ex.Message);
                 }
+            }
+        }
 
-                // Debugging: Print Pokémon IDs
-                string ids = string.Join(", ", pokemonIds);
-                MessageBox.Show($"Pokémon IDs to insert: {ids}");
-
-                using (SqlConnection connection = new SqlConnection(connectionString))
+        private void LoadTeams()
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
                 {
                     connection.Open();
-                    string query = "EXEC CreateEquipaPokemons @jogador, @tier, @pokemon1, @pokemon2, @pokemon3, @pokemon4, @pokemon5, @pokemon6";
-                    SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.AddWithValue("@jogador", player);
-                    command.Parameters.AddWithValue("@tier", tier);
-                    command.Parameters.AddWithValue("@pokemon1", pokemonIds[0]);
-                    command.Parameters.AddWithValue("@pokemon2", pokemonIds[1]);
-                    command.Parameters.AddWithValue("@pokemon3", pokemonIds[2]);
-                    command.Parameters.AddWithValue("@pokemon4", pokemonIds[3]);
-                    command.Parameters.AddWithValue("@pokemon5", pokemonIds[4]);
-                    command.Parameters.AddWithValue("@pokemon6", pokemonIds[5]);
-
-                    command.ExecuteNonQuery();
-                    MessageBox.Show("Team created successfully.");
+                    string query = "SELECT * FROM PokeCup_EquipaPokemons;";
+                    SqlDataAdapter dataAdapter = new SqlDataAdapter(query, connection);
+                    DataTable dataTable = new DataTable();
+                    dataAdapter.Fill(dataTable);
+                    dataGridView1.DataSource = dataTable;
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"An error occurred while creating the team: {ex.Message}");
-            }
-        }
-
-
-
-
-
-
-
-
-        // Equipas.cs
-        private void buttonAddPokemon_Click(object sender, EventArgs e)
-        {
-            using (var form = new PokemonForm())
-            {
-                if (form.ShowDialog() == DialogResult.OK)
+                catch (Exception ex)
                 {
-                    // Chamar a stored procedure com os dados selecionados
-                    using (var connection = new SqlConnection(connectionString))
-                    {
-                        connection.Open();
-                        var command = new SqlCommand("EXEC CreatePokemonEscolhido @nome, @ataque1, @ataque2, @ataque3, @ataque4, @item, @jogador", connection);
-                        command.Parameters.AddWithValue("@nome", form.SelectedPokemon);
-                        command.Parameters.AddWithValue("@ataque1", form.SelectedAtaques[0]);
-                        command.Parameters.AddWithValue("@ataque2", form.SelectedAtaques[1]);
-                        command.Parameters.AddWithValue("@ataque3", form.SelectedAtaques[2]);
-                        command.Parameters.AddWithValue("@ataque4", form.SelectedAtaques[3]);
-                        command.Parameters.AddWithValue("@item", form.SelectedItem);
-                        command.Parameters.AddWithValue("@jogador", "Joaquim"); // Substitua pelo jogador real
-
-                        command.ExecuteNonQuery();
-                    }
+                    MessageBox.Show("Erro ao carregar os dados: " + ex.Message);
                 }
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        // Lista
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            PokemonForm form = new PokemonForm();
-            form.Show(); // Ou form.ShowDialog(); dependendo do comportamento desejado
+
         }
     }
 }
