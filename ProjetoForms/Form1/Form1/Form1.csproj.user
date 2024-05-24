@@ -25,6 +25,9 @@
     <Compile Update="Pokemons.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="PokemonForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Torneios.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -110,6 +110,7 @@
             button1.Text = "+";
             button1.TextAlign = ContentAlignment.TopCenter;
             button1.UseVisualStyleBackColor = true;
+            button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Equipas
             // 

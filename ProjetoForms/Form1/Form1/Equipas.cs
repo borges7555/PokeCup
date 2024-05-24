@@ -48,8 +48,8 @@ namespace Form1
         {
             if (comboBoxPlayer.SelectedValue == null || comboBoxTier.SelectedItem == null) return;
 
-            string player = comboBoxPlayer.SelectedValue.ToString();
-            string tier = comboBoxTier.SelectedItem.ToString();
+            string player = comboBoxPlayer.SelectedValue?.ToString() ?? "DefaultPlayer";
+            string tier = comboBoxTier.SelectedItem?.ToString() ?? "DefaultTier";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -73,37 +73,113 @@ namespace Form1
 
         private void buttonCreateTeam_Click(object sender, EventArgs e)
         {
-            if (comboBoxPlayer.SelectedValue == null || comboBoxTier.SelectedItem == null || listBoxPokemons.SelectedItems.Count != 6)
+            try
             {
-                MessageBox.Show("Please select a player, tier, and exactly 6 Pokémon.");
-                return;
-            }
+                string player = comboBoxPlayer.SelectedValue?.ToString();
+                string tier = comboBoxTier.SelectedItem?.ToString();
 
-            string player = comboBoxPlayer.SelectedValue.ToString();
-            string tier = comboBoxTier.SelectedItem.ToString();
-            string[] pokemonNames = new string[6];
-            for (int i = 0; i < 6; i++)
-            {
-                pokemonNames[i] = ((DataRowView)listBoxPokemons.SelectedItems[i])["Pokemons_Nome"].ToString();
-            }
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                SqlCommand command = new SqlCommand("CreateEquipaPokemons", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@jogador", player);
-                command.Parameters.AddWithValue("@tier", tier);
-                for (int i = 0; i < 6; i++)
+                if (player == null || tier == null || listBoxPokemons.Items.Count != 6)
                 {
-                    command.Parameters.AddWithValue($"@pokemon{i + 1}", pokemonNames[i]);
+                    MessageBox.Show("Please select a player, tier, and exactly 6 Pokémon.");
+                    return;
                 }
 
-                connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
-            }
+                // Assuming listBoxPokemons contains Pokémon IDs as DataRowView
+                List<int> pokemonIds = new List<int>();
 
-            MessageBox.Show("Team created successfully!");
+                foreach (var item in listBoxPokemons.Items)
+                {
+                    if (item is DataRowView dataRowView)
+                    {
+                        var pokemonId = dataRowView["ID"]; // Correct column name for ID
+                        if (pokemonId != null && int.TryParse(pokemonId.ToString(), out int id))
+                        {
+                            pokemonIds.Add(id);
+                        }
+                        else
+                        {
+                            MessageBox.Show($"Invalid Pokémon ID format: {pokemonId}");
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Invalid item type in list: {item.GetType()}");
+                        return;
+                    }
+                }
+
+                if (pokemonIds.Count != 6)
+                {
+                    MessageBox.Show("Failed to retrieve all Pokémon IDs.");
+                    return;
+                }
+
+                // Debugging: Print Pokémon IDs
+                string ids = string.Join(", ", pokemonIds);
+                MessageBox.Show($"Pokémon IDs to insert: {ids}");
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = "EXEC CreateEquipaPokemons @jogador, @tier, @pokemon1, @pokemon2, @pokemon3, @pokemon4, @pokemon5, @pokemon6";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@jogador", player);
+                    command.Parameters.AddWithValue("@tier", tier);
+                    command.Parameters.AddWithValue("@pokemon1", pokemonIds[0]);
+                    command.Parameters.AddWithValue("@pokemon2", pokemonIds[1]);
+                    command.Parameters.AddWithValue("@pokemon3", pokemonIds[2]);
+                    command.Parameters.AddWithValue("@pokemon4", pokemonIds[3]);
+                    command.Parameters.AddWithValue("@pokemon5", pokemonIds[4]);
+                    command.Parameters.AddWithValue("@pokemon6", pokemonIds[5]);
+
+                    command.ExecuteNonQuery();
+                    MessageBox.Show("Team created successfully.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while creating the team: {ex.Message}");
+            }
+        }
+
+
+
+
+
+
+
+
+        // Equipas.cs
+        private void buttonAddPokemon_Click(object sender, EventArgs e)
+        {
+            using (var form = new PokemonForm())
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    // Chamar a stored procedure com os dados selecionados
+                    using (var connection = new SqlConnection(connectionString))
+                    {
+                        connection.Open();
+                        var command = new SqlCommand("EXEC CreatePokemonEscolhido @nome, @ataque1, @ataque2, @ataque3, @ataque4, @item, @jogador", connection);
+                        command.Parameters.AddWithValue("@nome", form.SelectedPokemon);
+                        command.Parameters.AddWithValue("@ataque1", form.SelectedAtaques[0]);
+                        command.Parameters.AddWithValue("@ataque2", form.SelectedAtaques[1]);
+                        command.Parameters.AddWithValue("@ataque3", form.SelectedAtaques[2]);
+                        command.Parameters.AddWithValue("@ataque4", form.SelectedAtaques[3]);
+                        command.Parameters.AddWithValue("@item", form.SelectedItem);
+                        command.Parameters.AddWithValue("@jogador", "Joaquim"); // Substitua pelo jogador real
+
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            PokemonForm form = new PokemonForm();
+            form.Show(); // Ou form.ShowDialog(); dependendo do comportamento desejado
         }
     }
 }
