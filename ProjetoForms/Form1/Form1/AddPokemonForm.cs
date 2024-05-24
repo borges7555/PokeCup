@@ -19,12 +19,16 @@ namespace Form1
 
         public string PokemonName => textBoxName.Text;
         public string PokemonType => textBoxType.Text;
-        public int PokemonLevel => (int)numericUpDownLevel.Value;
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        private void textBoxName_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 

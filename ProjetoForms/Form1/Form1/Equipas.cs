@@ -56,7 +56,7 @@ namespace Form1
 
             string player = comboBoxPlayer.SelectedValue?.ToString() ?? "DefaultPlayer";
             string tier = comboBoxTier.SelectedItem?.ToString() ?? "DefaultTier";
-            PokemonForm form = new PokemonForm(player, tier); // Pass the selected tier
+            AddPokemonEscolhidoForm form = new AddPokemonEscolhidoForm(player, tier); // Pass the selected tier
             form.Show(); // Or form.ShowDialog(); depending on the desired behavior
         }
 

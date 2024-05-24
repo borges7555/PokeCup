@@ -30,7 +30,7 @@ namespace Form1
 
 
             // Crie a consulta SQL
-            string query = "SELECT * FROM PokeCup_Jogador";
+            string query = "SELECT * FROM PokeCup_Torneio";
 
             try
             {
@@ -47,6 +47,15 @@ namespace Form1
             {
                 MessageBox.Show("Erro ao carregar dados: " + ex.Message);
             }
+        }
+
+
+        // Botão criar torneio
+        private void button5_Click(object sender, EventArgs e)
+        {
+            CreateTournamentForm createTournamentForm = new CreateTournamentForm();
+            createTournamentForm.ShowDialog();
+
         }
 
     }

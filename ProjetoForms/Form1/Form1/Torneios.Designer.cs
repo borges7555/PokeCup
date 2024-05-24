@@ -42,6 +42,7 @@
             button5.TabIndex = 17;
             button5.Text = "Criar Torneio";
             button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
             // 
             // label4
             // 

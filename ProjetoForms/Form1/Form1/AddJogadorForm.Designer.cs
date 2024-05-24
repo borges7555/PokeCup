@@ -8,48 +8,71 @@
 
         private void InitializeComponent()
         {
-            this.txtNickname = new System.Windows.Forms.TextBox();
-            this.txtWL = new System.Windows.Forms.TextBox();
-            this.btnOk = new System.Windows.Forms.Button();
-            this.SuspendLayout();
-
+            txtNickname = new TextBox();
+            txtWL = new TextBox();
+            btnOk = new Button();
+            labelPokemon = new Label();
+            label1 = new Label();
+            SuspendLayout();
             // 
             // txtNickname
             // 
-            this.txtNickname.Location = new System.Drawing.Point(12, 12);
-            this.txtNickname.Name = "txtNickname";
-            this.txtNickname.Size = new System.Drawing.Size(100, 20);
-            this.txtNickname.TabIndex = 0;
-
+            txtNickname.Location = new Point(12, 57);
+            txtNickname.Name = "txtNickname";
+            txtNickname.Size = new Size(100, 23);
+            txtNickname.TabIndex = 0;
             // 
             // txtWL
             // 
-            this.txtWL.Location = new System.Drawing.Point(12, 38);
-            this.txtWL.Name = "txtWL";
-            this.txtWL.Size = new System.Drawing.Size(100, 20);
-            this.txtWL.TabIndex = 1;
-
+            txtWL.Location = new Point(12, 123);
+            txtWL.Name = "txtWL";
+            txtWL.Size = new Size(100, 23);
+            txtWL.TabIndex = 1;
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(12, 64);
-            this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(75, 23);
-            this.btnOk.TabIndex = 2;
-            this.btnOk.Text = "OK";
-            this.btnOk.UseVisualStyleBackColor = true;
-            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
-
+            btnOk.Location = new Point(12, 202);
+            btnOk.Name = "btnOk";
+            btnOk.Size = new Size(75, 23);
+            btnOk.TabIndex = 2;
+            btnOk.Text = "OK";
+            btnOk.UseVisualStyleBackColor = true;
+            btnOk.Click += btnOk_Click;
+            // 
+            // labelPokemon
+            // 
+            labelPokemon.AutoSize = true;
+            labelPokemon.Location = new Point(12, 28);
+            labelPokemon.Margin = new Padding(4, 0, 4, 0);
+            labelPokemon.Name = "labelPokemon";
+            labelPokemon.Size = new Size(61, 15);
+            labelPokemon.TabIndex = 8;
+            labelPokemon.Text = "Nickname";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(12, 100);
+            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(29, 15);
+            label1.TabIndex = 9;
+            label1.Text = "W_L";
             // 
             // AddJogadorForm
             // 
-            this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Controls.Add(this.btnOk);
-            this.Controls.Add(this.txtWL);
-            this.Controls.Add(this.txtNickname);
-            this.Name = "AddJogadorForm";
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            ClientSize = new Size(284, 261);
+            Controls.Add(label1);
+            Controls.Add(labelPokemon);
+            Controls.Add(btnOk);
+            Controls.Add(txtWL);
+            Controls.Add(txtNickname);
+            Name = "AddJogadorForm";
+            ResumeLayout(false);
+            PerformLayout();
         }
+
+        private Label labelPokemon;
+        private Label label1;
     }
 }
