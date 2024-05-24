@@ -42,7 +42,7 @@ namespace Form1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            AddPokemonForm addPokemonForm = new AddPokemonForm();
+            AddPokemonPopUp addPokemonForm = new AddPokemonPopUp();
             if (addPokemonForm.ShowDialog() == DialogResult.OK)
             {
                 // Lógica para adicionar o Pokémon ao seu sistema

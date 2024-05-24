@@ -1,7 +1,7 @@
 ﻿namespace Form1
 {
     // AddPokemonForm.Designer.cs
-    partial class AddPokemonForm
+    partial class AddPokemonPopUp
     {
         private System.ComponentModel.IContainer components = null;
         private System.Windows.Forms.TextBox textBoxName;

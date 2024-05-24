@@ -31,12 +31,13 @@
             button5 = new Button();
             label4 = new Label();
             dataGridView1 = new DataGridView();
+            buttonSimularTorneio = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // button5
             // 
-            button5.Location = new Point(520, 32);
+            button5.Location = new Point(346, 32);
             button5.Name = "button5";
             button5.Size = new Size(157, 35);
             button5.TabIndex = 17;
@@ -67,11 +68,22 @@
             dataGridView1.TabIndex = 18;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
+            // buttonSimularTorneio
+            // 
+            buttonSimularTorneio.Location = new Point(520, 32);
+            buttonSimularTorneio.Name = "buttonSimularTorneio";
+            buttonSimularTorneio.Size = new Size(157, 35);
+            buttonSimularTorneio.TabIndex = 19;
+            buttonSimularTorneio.Text = "Simular Torneio";
+            buttonSimularTorneio.UseVisualStyleBackColor = true;
+            buttonSimularTorneio.Click += buttonSimularTorneio_Click;
+            // 
             // Torneios
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(700, 338);
+            Controls.Add(buttonSimularTorneio);
             Controls.Add(dataGridView1);
             Controls.Add(button5);
             Controls.Add(label4);
@@ -89,5 +101,6 @@
         private Button button5;
         private Label label4;
         private DataGridView dataGridView1;
+        private Button buttonSimularTorneio;
     }
 }

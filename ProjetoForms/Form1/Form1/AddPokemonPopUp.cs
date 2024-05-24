@@ -10,24 +10,26 @@ using System.Windows.Forms;
 
 namespace Form1
 {
-    public partial class AddJogadorForm : Form
+    public partial class AddPokemonPopUp : Form
     {
-        public string Nickname { get; private set; }
-        public float WL { get; private set; }
-
-        public AddJogadorForm()
+        public AddPokemonPopUp()
         {
             InitializeComponent();
         }
 
-        private void btnOk_Click(object sender, EventArgs e)
+        public string PokemonName => textBoxName.Text;
+        public string PokemonType => textBoxType.Text;
+
+        private void buttonSave_Click(object sender, EventArgs e)
         {
-            Nickname = txtNickname.Text;
-            WL = float.Parse(txtWL.Text);
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
 
+        private void textBoxName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }

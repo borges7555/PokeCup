@@ -12,7 +12,7 @@ using System.Windows.Forms;
 namespace Form1
 {
     // PokemonForm.cs
-    public partial class AddPokemonEscolhidoForm : Form
+    public partial class AddPokemonEscolhidoPopUp : Form
     {
         public string SelectedPokemon { get; private set; }
         public string[] SelectedAtaques { get; private set; }
@@ -24,7 +24,7 @@ namespace Form1
         private string connectionString = "Server=mednat.ieeta.pt\\SQLSERVER,8101;Database=p9g5;User Id=p9g5;Password=b62F@yZ$u@M%DB;";
 
 
-        public AddPokemonEscolhidoForm(string player, string tier) // Constructor to accept tier
+        public AddPokemonEscolhidoPopUp(string player, string tier) // Constructor to accept tier
         {
             InitializeComponent();
             SelectedPlayer = player;

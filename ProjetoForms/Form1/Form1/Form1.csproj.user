@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Compile Update="AddJogadorForm.cs">
+    <Compile Update="AddJogadorPopUp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="AddPokemonForm.cs">
+    <Compile Update="AddPokemonPopUp.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="ConnectToServer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="CreateTournamentForm.cs">
+    <Compile Update="AddTorneioPopUp.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Equipas.cs">
@@ -22,13 +22,19 @@
     <Compile Update="Jogadores.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="MainForm.cs">
+    <Compile Update="FormGeral.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Pokemons.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="AddPokemonEscolhidoForm.cs">
+    <Compile Update="AddPokemonEscolhidoPopUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="SimulacoesTorneios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="SimularTorneioPopUp.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Torneios.cs">

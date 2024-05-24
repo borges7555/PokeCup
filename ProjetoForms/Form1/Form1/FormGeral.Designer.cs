@@ -4,7 +4,7 @@ using System.Reflection.Metadata;
 
 namespace Form1
 {
-    partial class MainForm
+    partial class FormGeral
     {
         private System.Windows.Forms.Panel panelSidebar;
         private System.Windows.Forms.Panel panelMain;
@@ -15,19 +15,21 @@ namespace Form1
         private void InitializeComponent()
         {
             panelSidebar = new Panel();
+            button3 = new Button();
             button2 = new Button();
             button1 = new Button();
             btnForm1 = new Button();
             btnForm2 = new Button();
             btnForm3 = new Button();
             panelMain = new Panel();
-            button3 = new Button();
+            button4 = new Button();
             panelSidebar.SuspendLayout();
             SuspendLayout();
             // 
             // panelSidebar
             // 
             panelSidebar.BackColor = Color.LightGray;
+            panelSidebar.Controls.Add(button4);
             panelSidebar.Controls.Add(button3);
             panelSidebar.Controls.Add(button2);
             panelSidebar.Controls.Add(button1);
@@ -39,6 +41,16 @@ namespace Form1
             panelSidebar.Name = "panelSidebar";
             panelSidebar.Size = new Size(85, 450);
             panelSidebar.TabIndex = 1;
+            // 
+            // button3
+            // 
+            button3.Dock = DockStyle.Top;
+            button3.Location = new Point(0, 115);
+            button3.Name = "button3";
+            button3.Size = new Size(85, 23);
+            button3.TabIndex = 5;
+            button3.Text = "Server";
+            button3.Click += button3_Click;
             // 
             // button2
             // 
@@ -98,22 +110,22 @@ namespace Form1
             panelMain.Size = new Size(715, 450);
             panelMain.TabIndex = 0;
             // 
-            // button3
+            // button4
             // 
-            button3.Dock = DockStyle.Top;
-            button3.Location = new Point(0, 115);
-            button3.Name = "button3";
-            button3.Size = new Size(85, 23);
-            button3.TabIndex = 5;
-            button3.Text = "Server";
-            button3.Click += button3_Click;
+            button4.Dock = DockStyle.Top;
+            button4.Location = new Point(0, 138);
+            button4.Name = "button4";
+            button4.Size = new Size(85, 23);
+            button4.TabIndex = 6;
+            button4.Text = "Simulações";
+            button4.Click += button4_Click;
             // 
-            // MainForm
+            // FormGeral
             // 
             ClientSize = new Size(800, 450);
             Controls.Add(panelMain);
             Controls.Add(panelSidebar);
-            Name = "MainForm";
+            Name = "FormGeral";
             Load += MainForm_Load;
             panelSidebar.ResumeLayout(false);
             ResumeLayout(false);
@@ -122,5 +134,6 @@ namespace Form1
         private Button button1;
         private Button button2;
         private Button button3;
+        private Button button4;
     }
 }

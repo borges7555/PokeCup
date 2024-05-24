@@ -56,7 +56,7 @@ namespace Form1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            using (AddJogadorForm addJogadorForm = new AddJogadorForm())
+            using (AddJogadorPopUp addJogadorForm = new AddJogadorPopUp())
             {
                 if (addJogadorForm.ShowDialog() == DialogResult.OK)
                 {

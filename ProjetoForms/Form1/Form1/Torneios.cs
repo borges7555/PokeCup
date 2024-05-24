@@ -53,10 +53,15 @@ namespace Form1
         // Botão criar torneio
         private void button5_Click(object sender, EventArgs e)
         {
-            CreateTournamentForm createTournamentForm = new CreateTournamentForm();
+            AddTorneioPopUp createTournamentForm = new AddTorneioPopUp();
             createTournamentForm.ShowDialog();
 
         }
 
+        private void buttonSimularTorneio_Click(object sender, EventArgs e)
+        {
+            SimularTorneioPopUp simularTorneioPopup = new SimularTorneioPopUp();
+            simularTorneioPopup.ShowDialog();
+        }
     }
 }

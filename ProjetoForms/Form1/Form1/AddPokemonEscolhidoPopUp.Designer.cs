@@ -1,6 +1,6 @@
 ﻿namespace Form1
 {
-    partial class AddPokemonEscolhidoForm
+    partial class AddPokemonEscolhidoPopUp
     {
 
         private System.ComponentModel.IContainer components = null;

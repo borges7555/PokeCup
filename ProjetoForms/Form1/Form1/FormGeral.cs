@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Form1
 {
-    public partial class MainForm : Form
+    public partial class FormGeral : Form
     {
-        public MainForm()
+        public FormGeral()
         {
             InitializeComponent();
         }
@@ -63,6 +63,11 @@ namespace Form1
         private void button3_Click(object sender, EventArgs e)
         {
             LoadForm(new ConnectToServer());
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            LoadForm(new SimulacoesTorneios());
         }
     }
 

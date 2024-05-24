@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace Form1
 {
-    public partial class CreateTournamentForm : Form
+    public partial class AddTorneioPopUp : Form
     {
-        public CreateTournamentForm()
+        public AddTorneioPopUp()
         {
             InitializeComponent();
             this.Load += new System.EventHandler(this.CreateTournamentForm_Load);

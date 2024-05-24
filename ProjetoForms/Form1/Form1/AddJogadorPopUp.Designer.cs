@@ -1,6 +1,6 @@
 ﻿namespace Form1
 {
-    partial class AddJogadorForm
+    partial class AddJogadorPopUp
     {
         private System.Windows.Forms.TextBox txtNickname;
         private System.Windows.Forms.TextBox txtWL;

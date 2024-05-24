@@ -1,6 +1,6 @@
 ﻿namespace Form1
 {
-    partial class CreateTournamentForm
+    partial class AddTorneioPopUp
     {
         /// <summary>
         /// Required designer variable.
