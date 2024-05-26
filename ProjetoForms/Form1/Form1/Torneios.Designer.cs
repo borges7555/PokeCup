@@ -37,9 +37,10 @@
             // 
             // button5
             // 
-            button5.Location = new Point(346, 32);
+            button5.Location = new Point(395, 43);
+            button5.Margin = new Padding(3, 4, 3, 4);
             button5.Name = "button5";
-            button5.Size = new Size(157, 35);
+            button5.Size = new Size(179, 47);
             button5.TabIndex = 17;
             button5.Text = "Criar Torneio";
             button5.UseVisualStyleBackColor = true;
@@ -51,28 +52,30 @@
             label4.BackColor = SystemColors.Control;
             label4.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = SystemColors.ControlText;
-            label4.Location = new Point(35, 25);
+            label4.Location = new Point(40, 33);
             label4.Name = "label4";
-            label4.Size = new Size(127, 37);
+            label4.Size = new Size(157, 46);
             label4.TabIndex = 12;
             label4.Text = "Torneios";
             // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(38, 91);
+            dataGridView1.Location = new Point(43, 121);
+            dataGridView1.Margin = new Padding(3, 4, 3, 4);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 24;
-            dataGridView1.Size = new Size(639, 218);
+            dataGridView1.Size = new Size(730, 291);
             dataGridView1.TabIndex = 18;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // buttonSimularTorneio
             // 
-            buttonSimularTorneio.Location = new Point(520, 32);
+            buttonSimularTorneio.Location = new Point(594, 43);
+            buttonSimularTorneio.Margin = new Padding(3, 4, 3, 4);
             buttonSimularTorneio.Name = "buttonSimularTorneio";
-            buttonSimularTorneio.Size = new Size(157, 35);
+            buttonSimularTorneio.Size = new Size(179, 47);
             buttonSimularTorneio.TabIndex = 19;
             buttonSimularTorneio.Text = "Criar Partidas";
             buttonSimularTorneio.UseVisualStyleBackColor = true;
@@ -80,14 +83,17 @@
             // 
             // Torneios
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(700, 338);
+            AutoSize = true;
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            ClientSize = new Size(800, 451);
+            ControlBox = false;
             Controls.Add(buttonSimularTorneio);
             Controls.Add(dataGridView1);
             Controls.Add(button5);
             Controls.Add(label4);
-            Margin = new Padding(3, 2, 3, 2);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "Torneios";
             Text = "Form7";
             Load += Form7_Load;

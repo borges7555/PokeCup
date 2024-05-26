@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace Form1
 {
-    public partial class CriarPartidas : Form
+    public partial class CriarPartidasPopUp : Form
     {
-        public CriarPartidas()
+        public CriarPartidasPopUp()
         {
             InitializeComponent();
             LoadTorneios();

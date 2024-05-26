@@ -1,0 +1,11 @@
+C:\Users\quimr\Downloads\bdprojeto\Form1.exe
+C:\Users\quimr\Downloads\bdprojeto\Form1.dll
+C:\Users\quimr\Downloads\bdprojeto\Form1.deps.json
+C:\Users\quimr\Downloads\bdprojeto\Form1.runtimeconfig.json
+C:\Users\quimr\Downloads\bdprojeto\Form1.pdb
+C:\Users\quimr\Downloads\bdprojeto\System.Data.SqlClient.dll
+C:\Users\quimr\Downloads\bdprojeto\runtimes\win-arm64\native\sni.dll
+C:\Users\quimr\Downloads\bdprojeto\runtimes\win-x64\native\sni.dll
+C:\Users\quimr\Downloads\bdprojeto\runtimes\win-x86\native\sni.dll
+C:\Users\quimr\Downloads\bdprojeto\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\quimr\Downloads\bdprojeto\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll

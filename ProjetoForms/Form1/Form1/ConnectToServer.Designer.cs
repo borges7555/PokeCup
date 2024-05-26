@@ -57,6 +57,7 @@
             // 
             textBox2.Location = new Point(204, 308);
             textBox2.Name = "textBox2";
+            textBox2.PasswordChar = '*';
             textBox2.Size = new Size(387, 27);
             textBox2.TabIndex = 11;
             textBox2.Text = "b62F@yZ$u@M%DB";
@@ -142,11 +143,12 @@
             label5.Text = "DB name:";
             label5.Click += label5_Click;
             // 
-            // Form5
+            // ConnectToServer
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(697, 505);
+            ControlBox = false;
             Controls.Add(textBox4);
             Controls.Add(label5);
             Controls.Add(textBox3);
@@ -157,7 +159,8 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(label4);
-            Name = "Form5";
+            FormBorderStyle = FormBorderStyle.None;
+            Name = "ConnectToServer";
             Text = "Form5";
             ResumeLayout(false);
             PerformLayout();

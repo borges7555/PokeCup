@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Form1
 {
     public partial class FormGeral : Form
@@ -20,7 +21,7 @@ namespace Form1
         private void MainForm_Load(object sender, EventArgs e)
         {
             // Carregar o formulário inicial no painel principal
-            LoadForm(new HomePage());
+            LoadForm(new ConnectToServer());
         }
 
         private void LoadForm(Form form)
@@ -78,6 +79,11 @@ namespace Form1
         private void button6_Click(object sender, EventArgs e)
         {
             LoadForm(new Rondas());
+        }
+
+        private void panelMain_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 

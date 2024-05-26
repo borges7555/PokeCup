@@ -1,6 +1,6 @@
 ﻿namespace Form1
 {
-    partial class CriarPartidas
+    partial class CriarPartidasPopUp
     {
         /// <summary>
         /// Required designer variable.

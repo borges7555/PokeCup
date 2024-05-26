@@ -1,5 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_LastSelectedProfileId>C:\Users\quimr\OneDrive\Documentos\Escola\3Ano\2Semestre\BD\projeto\Git\PokeCup\ProjetoForms\Form1\Form1\Properties\PublishProfiles\FolderProfile.pubxml</_LastSelectedProfileId>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Update="AddJogadorPopUp.cs">
       <SubType>Form</SubType>
@@ -43,7 +46,7 @@
     <Compile Update="Rondas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="CriarPartidas.cs">
+    <Compile Update="CriarPartidasPopUp.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Torneios.cs">

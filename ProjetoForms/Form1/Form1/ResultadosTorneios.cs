@@ -17,7 +17,6 @@ namespace Form1
         {
             InitializeComponent();
             LoadTorneios();
-            LoadJogadores();
         }
 
         private string connectionString = "Server=mednat.ieeta.pt\\\\SQLSERVER,8101;Database=p9g5;User Id=p9g5;Password=b62F@yZ$u@M%DB;";
@@ -79,7 +78,7 @@ namespace Form1
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Erro ao carregar os dados: " + ex.Message);
+                    //MessageBox.Show("Erro ao carregar os dados: " + ex.Message);
                 }
             }
         }
@@ -116,7 +115,7 @@ namespace Form1
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Erro ao carregar os dados: " + ex.Message);
+                    //MessageBox.Show("Erro ao carregar os dados: " + ex.Message);
                 }
             }
         }
@@ -159,7 +158,7 @@ namespace Form1
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Erro ao carregar as rondas: " + ex.Message);
+                    //MessageBox.Show("Erro ao carregar as rondas: " + ex.Message);
                 }
             }
         }
@@ -200,7 +199,7 @@ namespace Form1
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Erro ao carregar os resultados: " + ex.Message);
+                    //MessageBox.Show("Erro ao carregar os resultados: " + ex.Message);
                 }
             }
         }
@@ -214,7 +213,6 @@ namespace Form1
 
         private void comboBoxEscolherRondas_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadResultados();
         }
 
         private void dataGridViewRondasResultados_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -225,6 +223,7 @@ namespace Form1
         private void comboBoxEscolherBatalha_SelectedIndexChanged(object sender, EventArgs e)
         {
             LoadRondas();
+            LoadResultados();
         }
     }
 }

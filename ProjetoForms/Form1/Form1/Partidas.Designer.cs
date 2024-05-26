@@ -39,9 +39,9 @@
             label4.BackColor = SystemColors.Control;
             label4.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = SystemColors.ControlText;
-            label4.Location = new Point(44, 41);
+            label4.Location = new Point(50, 55);
             label4.Name = "label4";
-            label4.Size = new Size(123, 37);
+            label4.Size = new Size(150, 46);
             label4.TabIndex = 6;
             label4.Text = "Partidas";
             // 
@@ -49,21 +49,25 @@
             // 
             dataGridViewPartidas.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewPartidas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewPartidas.Location = new Point(44, 108);
+            dataGridViewPartidas.Location = new Point(50, 144);
+            dataGridViewPartidas.Margin = new Padding(3, 4, 3, 4);
             dataGridViewPartidas.Name = "dataGridViewPartidas";
             dataGridViewPartidas.RowHeadersWidth = 51;
             dataGridViewPartidas.RowTemplate.Height = 24;
-            dataGridViewPartidas.Size = new Size(697, 221);
+            dataGridViewPartidas.Size = new Size(797, 295);
             dataGridViewPartidas.TabIndex = 21;
             dataGridViewPartidas.CellContentClick += dataGridViewPartidas_CellContentClick;
             // 
             // Partidas
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(914, 600);
+            ControlBox = false;
             Controls.Add(dataGridViewPartidas);
             Controls.Add(label4);
+            FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "Partidas";
             Text = "Partidas";
             ((System.ComponentModel.ISupportInitialize)dataGridViewPartidas).EndInit();

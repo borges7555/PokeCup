@@ -40,9 +40,9 @@
             label4.BackColor = SystemColors.Control;
             label4.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = SystemColors.ControlText;
-            label4.Location = new Point(49, 37);
+            label4.Location = new Point(56, 49);
             label4.Name = "label4";
-            label4.Size = new Size(111, 37);
+            label4.Size = new Size(137, 46);
             label4.TabIndex = 7;
             label4.Text = "Rondas";
             // 
@@ -50,19 +50,21 @@
             // 
             dataGridViewRondas.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewRondas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewRondas.Location = new Point(49, 105);
+            dataGridViewRondas.Location = new Point(56, 140);
+            dataGridViewRondas.Margin = new Padding(3, 4, 3, 4);
             dataGridViewRondas.Name = "dataGridViewRondas";
             dataGridViewRondas.RowHeadersWidth = 51;
             dataGridViewRondas.RowTemplate.Height = 24;
-            dataGridViewRondas.Size = new Size(697, 221);
+            dataGridViewRondas.Size = new Size(797, 295);
             dataGridViewRondas.TabIndex = 22;
             dataGridViewRondas.CellContentClick += dataGridViewRondas_CellContentClick;
             // 
             // buttonSimularRondas
             // 
-            buttonSimularRondas.Location = new Point(589, 37);
+            buttonSimularRondas.Location = new Point(673, 49);
+            buttonSimularRondas.Margin = new Padding(3, 4, 3, 4);
             buttonSimularRondas.Name = "buttonSimularRondas";
-            buttonSimularRondas.Size = new Size(157, 35);
+            buttonSimularRondas.Size = new Size(179, 47);
             buttonSimularRondas.TabIndex = 23;
             buttonSimularRondas.Text = "Simular Rondas";
             buttonSimularRondas.UseVisualStyleBackColor = true;
@@ -70,12 +72,15 @@
             // 
             // Rondas
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(914, 600);
+            ControlBox = false;
             Controls.Add(buttonSimularRondas);
             Controls.Add(dataGridViewRondas);
             Controls.Add(label4);
+            FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "Rondas";
             Text = "Rondas";
             ((System.ComponentModel.ISupportInitialize)dataGridViewRondas).EndInit();

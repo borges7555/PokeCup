@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static Form1.CriarPartidas;
+using static Form1.CriarPartidasPopUp;
 
 namespace Form1
 {
@@ -53,8 +53,8 @@ namespace Form1
             // Verificar se o torneio já tem rondas
             if (TorneioTemRondas(torneioId))
             {
-                MessageBox.Show("O torneio já tem rondas.");
-                //return;
+                MessageBox.Show("A simulação das rondas já foi feita.");
+                return;
             }
 
             // Passo 1: Buscar as partidas iniciais
@@ -68,30 +68,6 @@ namespace Form1
 
 
         }
-
-
-        // 1
-        // Para cada partida cria 3 rondas, que são compostas pelo numero da partida e o id do torneio
-        // e os valores das variaveis numero de pokemons vivos do jogador 1 e 2 são gerados aleatoriamente de 0 a 6 e nunca podem ser iguais
-        // depois dos valores gerados quem tiver mais pokemons vivos é que ganhou aquela ronda
-
-
-        //var vencedorRonda = GetVencedorRonda(torneioId, 1);
-        //MessageBox.Show($"Vencedor da Ronda: {vencedorRonda}");
-
-
-        // 2
-        // Depois de ter simulado as rondas para as partidas iniciais
-        // pega os vencedores das partidas e caso haja mais que 2 jogadores ele cria novas partidas entre eles
-        // por exemplo, começou com 4 partidas iniciais, dessas foram eliminados 4 jogadores, então os vencedores vão realizar outras partidas cmo outros jogadores
-        // neste caso vamos ter que criar mais 2 partidas onde o primeiro vencedor vai jogar com o segundo, e o terceiro com o quarto
-        // depois voltamos a simular rondas para estas partidas
-        // e vamos continuando a fazer isto até que chegamos a um ultimo vencedor e já não é possivel criar partidas
-
-
-        // 3
-        // Depois de chegarmos a ultmia partida e descobrirmos o vencedor
-        // Adicionamos na tabela o Resultado Final
 
 
         private void SimulateTournament(int torneioId, DataTable partidas)
@@ -167,15 +143,23 @@ namespace Form1
         private (int, int) SimulateRonda()
         {
             Random rand = new Random();
-            int numPokeVivosJ1 = rand.Next(0, 7);
-            int numPokeVivosJ2;
-            do
+            int numPokeVivosJ1, numPokeVivosJ2;
+
+            // Decidir aleatoriamente qual jogador terá 0 pokémons vivos
+            if (rand.Next(0, 2) == 0)
             {
-                numPokeVivosJ2 = rand.Next(0, 7);
-            } while (numPokeVivosJ1 == numPokeVivosJ2);
+                numPokeVivosJ1 = 0;
+                numPokeVivosJ2 = rand.Next(1, 7); // Aleatório entre 1 e 6
+            }
+            else
+            {
+                numPokeVivosJ1 = rand.Next(1, 7); // Aleatório entre 1 e 6
+                numPokeVivosJ2 = 0;
+            }
 
             return (numPokeVivosJ1, numPokeVivosJ2);
         }
+
 
         // Função para criar uma nova ronda
         private void ExecuteCreateRonda(int num, int numPokeVivos1, int numPokeVivos2, int partidaNumero, int torneioId, string vencedor)
@@ -202,12 +186,12 @@ namespace Form1
         private void ExecuteCreateResultadoFinal(int partidaNumero, int torneioId, string vencedor, int rondasGanhasJ1, int rondasGanhasJ2)
         {
             // Mensagem de debug para verificar valores
-            MessageBox.Show($"Debug: Tentando inserir resultado final\n" +
-                            $"Partida_Numero: {partidaNumero}\n" +
-                            $"Torneio_ID: {torneioId}\n" +
-                            $"Jogador_Vencedor: {vencedor}\n" +
-                            $"Rondas_Ganhas_J1: {rondasGanhasJ1}\n" +
-                            $"Rondas_Ganhas_J2: {rondasGanhasJ2}");
+            //MessageBox.Show($"Debug: Tentando inserir resultado final\n" +
+            //                $"Partida_Numero: {partidaNumero}\n" +
+            //                $"Torneio_ID: {torneioId}\n" +
+            //                $"Jogador_Vencedor: {vencedor}\n" +
+            //                $"Rondas_Ganhas_J1: {rondasGanhasJ1}\n" +
+            //                $"Rondas_Ganhas_J2: {rondasGanhasJ2}");
 
             string query = "EXEC CreateResultadoFinal @partidanumero, @torneioid, @jogadorvencedor, @rondas_ganhas1, @rondas_ganhas2";
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -239,7 +223,7 @@ namespace Form1
                     command.Parameters.AddWithValue("@torneioid", torneioId);
                     connection.Open();
                     int nextPartidaNum = (int)command.ExecuteScalar();
-                    MessageBox.Show($"Debug: Próximo número de partida para Torneio_ID {torneioId} é {nextPartidaNum}");
+                    //MessageBox.Show($"Debug: Próximo número de partida para Torneio_ID {torneioId} é {nextPartidaNum}");
                     return nextPartidaNum;
                 }
             }
@@ -307,11 +291,11 @@ namespace Form1
         private void InserirPartida(int partidaNum, int torneioId, string jogador1, string jogador2)
         {
             // Mensagem de debug para verificar valores
-            MessageBox.Show($"Debug: Tentando inserir nova partida\n" +
-                            $"Partida_Numero: {partidaNum}\n" +
-                            $"Torneio_ID: {torneioId}\n" +
-                            $"Jogador_Nickname_1: {jogador1}\n" +
-                            $"Jogador_Nickname_2: {jogador2}");
+            //MessageBox.Show($"Debug: Tentando inserir nova partida\n" +
+            //                $"Partida_Numero: {partidaNum}\n" +
+            //                $"Torneio_ID: {torneioId}\n" +
+            //                $"Jogador_Nickname_1: {jogador1}\n" +
+            //                $"Jogador_Nickname_2: {jogador2}");
 
             string query = "INSERT INTO PokeCup_Partida (Numero, Torneio_ID, Jogador_Nickname_1, Jogador_Nickname_2) " +
                            "VALUES (@partidaNum, @torneioId, @jogador1, @jogador2)";
@@ -397,7 +381,7 @@ namespace Form1
 
                         // Construir a string com as informações de todas as partidas
                         StringBuilder sb = new StringBuilder();
-                        sb.AppendLine($"partidas: {partidas.Rows.Count}");
+                        sb.AppendLine($"Partidas Iniciais: {partidas.Rows.Count}");
                         foreach (DataRow row in partidas.Rows)
                         {
                             sb.AppendLine($"Número: {row["Numero"]}, Torneio_ID: {row["Torneio_ID"]}, Jogador_Nickname_1: {row["Jogador_Nickname_1"]}, Jogador_Nickname_2: {row["Jogador_Nickname_2"]}");

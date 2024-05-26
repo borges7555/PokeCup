@@ -60,7 +60,7 @@ namespace Form1
 
         private void buttonSimularTorneio_Click(object sender, EventArgs e)
         {
-            CriarPartidas simularTorneioPopup = new CriarPartidas();
+            CriarPartidasPopUp simularTorneioPopup = new CriarPartidasPopUp();
             simularTorneioPopup.ShowDialog();
         }
     }

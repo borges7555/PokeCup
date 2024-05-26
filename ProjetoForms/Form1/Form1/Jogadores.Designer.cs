@@ -40,18 +40,19 @@
             label4.BackColor = SystemColors.Control;
             label4.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = SystemColors.ControlText;
-            label4.Location = new Point(46, 32);
+            label4.Location = new Point(53, 43);
             label4.Name = "label4";
-            label4.Size = new Size(150, 37);
+            label4.Size = new Size(184, 46);
             label4.TabIndex = 4;
             label4.Text = "Jogadores";
             label4.Click += label4_Click;
             // 
             // button1
             // 
-            button1.Location = new Point(496, 38);
+            button1.Location = new Point(567, 51);
+            button1.Margin = new Padding(3, 4, 3, 4);
             button1.Name = "button1";
-            button1.Size = new Size(157, 35);
+            button1.Size = new Size(179, 47);
             button1.TabIndex = 5;
             button1.Text = "Adicionar Jogador";
             button1.UseVisualStyleBackColor = true;
@@ -60,23 +61,27 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(46, 108);
+            dataGridView1.Location = new Point(53, 144);
+            dataGridView1.Margin = new Padding(3, 4, 3, 4);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 24;
-            dataGridView1.Size = new Size(607, 218);
+            dataGridView1.Size = new Size(694, 291);
             dataGridView1.TabIndex = 19;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // Jogadores
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(700, 338);
+            AutoSize = true;
+            AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            ClientSize = new Size(800, 451);
+            ControlBox = false;
             Controls.Add(dataGridView1);
             Controls.Add(button1);
             Controls.Add(label4);
-            Margin = new Padding(3, 2, 3, 2);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "Jogadores";
             Text = "Form4";
             Load += Form4_Load;
