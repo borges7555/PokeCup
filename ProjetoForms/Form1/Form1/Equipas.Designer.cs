@@ -51,6 +51,7 @@
             listBoxPokemons.SelectionMode = SelectionMode.MultiExtended;
             listBoxPokemons.Size = new Size(200, 139);
             listBoxPokemons.TabIndex = 2;
+            listBoxPokemons.SelectedIndexChanged += listBoxPokemons_SelectedIndexChanged;
             // 
             // buttonCreateTeam
             // 

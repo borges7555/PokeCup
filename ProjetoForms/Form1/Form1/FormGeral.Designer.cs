@@ -15,6 +15,9 @@ namespace Form1
         private void InitializeComponent()
         {
             panelSidebar = new Panel();
+            button6 = new Button();
+            button5 = new Button();
+            button4 = new Button();
             button3 = new Button();
             button2 = new Button();
             button1 = new Button();
@@ -22,13 +25,14 @@ namespace Form1
             btnForm2 = new Button();
             btnForm3 = new Button();
             panelMain = new Panel();
-            button4 = new Button();
             panelSidebar.SuspendLayout();
             SuspendLayout();
             // 
             // panelSidebar
             // 
             panelSidebar.BackColor = Color.LightGray;
+            panelSidebar.Controls.Add(button6);
+            panelSidebar.Controls.Add(button5);
             panelSidebar.Controls.Add(button4);
             panelSidebar.Controls.Add(button3);
             panelSidebar.Controls.Add(button2);
@@ -41,6 +45,36 @@ namespace Form1
             panelSidebar.Name = "panelSidebar";
             panelSidebar.Size = new Size(85, 450);
             panelSidebar.TabIndex = 1;
+            // 
+            // button6
+            // 
+            button6.Dock = DockStyle.Top;
+            button6.Location = new Point(0, 184);
+            button6.Name = "button6";
+            button6.Size = new Size(85, 23);
+            button6.TabIndex = 8;
+            button6.Text = "Rondas";
+            button6.Click += button6_Click;
+            // 
+            // button5
+            // 
+            button5.Dock = DockStyle.Top;
+            button5.Location = new Point(0, 161);
+            button5.Name = "button5";
+            button5.Size = new Size(85, 23);
+            button5.TabIndex = 7;
+            button5.Text = "Partidas";
+            button5.Click += button5_Click;
+            // 
+            // button4
+            // 
+            button4.Dock = DockStyle.Top;
+            button4.Location = new Point(0, 138);
+            button4.Name = "button4";
+            button4.Size = new Size(85, 23);
+            button4.TabIndex = 6;
+            button4.Text = "Resultados";
+            button4.Click += button4_Click;
             // 
             // button3
             // 
@@ -110,16 +144,6 @@ namespace Form1
             panelMain.Size = new Size(715, 450);
             panelMain.TabIndex = 0;
             // 
-            // button4
-            // 
-            button4.Dock = DockStyle.Top;
-            button4.Location = new Point(0, 138);
-            button4.Name = "button4";
-            button4.Size = new Size(85, 23);
-            button4.TabIndex = 6;
-            button4.Text = "Simulações";
-            button4.Click += button4_Click;
-            // 
             // FormGeral
             // 
             ClientSize = new Size(800, 450);
@@ -135,5 +159,7 @@ namespace Form1
         private Button button2;
         private Button button3;
         private Button button4;
+        private Button button5;
+        private Button button6;
     }
 }

@@ -74,7 +74,7 @@
             buttonSimularTorneio.Name = "buttonSimularTorneio";
             buttonSimularTorneio.Size = new Size(157, 35);
             buttonSimularTorneio.TabIndex = 19;
-            buttonSimularTorneio.Text = "Simular Torneio";
+            buttonSimularTorneio.Text = "Criar Partidas";
             buttonSimularTorneio.UseVisualStyleBackColor = true;
             buttonSimularTorneio.Click += buttonSimularTorneio_Click;
             // 

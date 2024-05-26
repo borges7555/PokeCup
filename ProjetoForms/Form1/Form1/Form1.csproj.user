@@ -7,6 +7,9 @@
     <Compile Update="AddPokemonPopUp.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="AddRondaPopUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="ConnectToServer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -25,16 +28,22 @@
     <Compile Update="FormGeral.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Partidas.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Pokemons.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="AddPokemonEscolhidoPopUp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="SimulacoesTorneios.cs">
+    <Compile Update="ResultadosTorneios.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="SimularTorneioPopUp.cs">
+    <Compile Update="Rondas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="CriarPartidas.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Torneios.cs">

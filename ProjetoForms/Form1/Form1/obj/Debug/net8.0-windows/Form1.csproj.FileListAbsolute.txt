@@ -33,5 +33,8 @@ C:\Users\quimr\OneDrive\Documentos\Escola\3Ano\2Semestre\BD\projeto\Git\PokeCup\
 C:\Users\quimr\OneDrive\Documentos\Escola\3Ano\2Semestre\BD\projeto\Git\PokeCup\ProjetoForms\Form1\Form1\obj\Debug\net8.0-windows\Form1.AddPokemonPopUp.resources
 C:\Users\quimr\OneDrive\Documentos\Escola\3Ano\2Semestre\BD\projeto\Git\PokeCup\ProjetoForms\Form1\Form1\obj\Debug\net8.0-windows\Form1.AddTorneioPopUp.resources
 C:\Users\quimr\OneDrive\Documentos\Escola\3Ano\2Semestre\BD\projeto\Git\PokeCup\ProjetoForms\Form1\Form1\obj\Debug\net8.0-windows\Form1.FormGeral.resources
-C:\Users\quimr\OneDrive\Documentos\Escola\3Ano\2Semestre\BD\projeto\Git\PokeCup\ProjetoForms\Form1\Form1\obj\Debug\net8.0-windows\Form1.SimularTorneioPopUp.resources
-C:\Users\quimr\OneDrive\Documentos\Escola\3Ano\2Semestre\BD\projeto\Git\PokeCup\ProjetoForms\Form1\Form1\obj\Debug\net8.0-windows\Form1.SimulacoesTorneios.resources
+C:\Users\quimr\OneDrive\Documentos\Escola\3Ano\2Semestre\BD\projeto\Git\PokeCup\ProjetoForms\Form1\Form1\obj\Debug\net8.0-windows\Form1.Partidas.resources
+C:\Users\quimr\OneDrive\Documentos\Escola\3Ano\2Semestre\BD\projeto\Git\PokeCup\ProjetoForms\Form1\Form1\obj\Debug\net8.0-windows\Form1.Rondas.resources
+C:\Users\quimr\OneDrive\Documentos\Escola\3Ano\2Semestre\BD\projeto\Git\PokeCup\ProjetoForms\Form1\Form1\obj\Debug\net8.0-windows\Form1.CriarPartidas.resources
+C:\Users\quimr\OneDrive\Documentos\Escola\3Ano\2Semestre\BD\projeto\Git\PokeCup\ProjetoForms\Form1\Form1\obj\Debug\net8.0-windows\Form1.ResultadosTorneios.resources
+C:\Users\quimr\OneDrive\Documentos\Escola\3Ano\2Semestre\BD\projeto\Git\PokeCup\ProjetoForms\Form1\Form1\obj\Debug\net8.0-windows\Form1.AddRondaPopUp.resources

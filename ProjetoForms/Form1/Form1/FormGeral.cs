@@ -67,7 +67,17 @@ namespace Form1
 
         private void button4_Click(object sender, EventArgs e)
         {
-            LoadForm(new SimulacoesTorneios());
+            LoadForm(new ResultadosTorneios());
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            LoadForm(new Partidas());
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            LoadForm(new Rondas());
         }
     }
 

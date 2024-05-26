@@ -1,6 +1,6 @@
 ﻿namespace Form1
 {
-    partial class SimularTorneioPopUp
+    partial class CriarPartidas
     {
         /// <summary>
         /// Required designer variable.
@@ -31,9 +31,9 @@
             label4 = new Label();
             EscolherTorneio = new Label();
             comboBoxTorneios = new ComboBox();
-            label1 = new Label();
-            comboBoxJogadores = new ComboBox();
+            labelEscolherJogadores = new Label();
             buttonSimular = new Button();
+            listBoxJogadores = new ListBox();
             SuspendLayout();
             // 
             // label4
@@ -44,9 +44,9 @@
             label4.ForeColor = SystemColors.ControlText;
             label4.Location = new Point(38, 39);
             label4.Name = "label4";
-            label4.Size = new Size(220, 37);
+            label4.Size = new Size(192, 37);
             label4.TabIndex = 13;
-            label4.Text = "Simular Torneio";
+            label4.Text = "Criar Partidas";
             // 
             // EscolherTorneio
             // 
@@ -65,47 +65,50 @@
             comboBoxTorneios.Name = "comboBoxTorneios";
             comboBoxTorneios.Size = new Size(200, 23);
             comboBoxTorneios.TabIndex = 15;
+            comboBoxTorneios.SelectedIndexChanged += comboBoxTorneios_SelectedIndexChanged;
             // 
-            // label1
+            // labelEscolherJogadores
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 13F);
-            label1.Location = new Point(38, 182);
-            label1.Name = "label1";
-            label1.Size = new Size(190, 25);
-            label1.TabIndex = 16;
-            label1.Text = "Escolher Jogadores (X)";
-            // 
-            // comboBoxJogadores
-            // 
-            comboBoxJogadores.FormattingEnabled = true;
-            comboBoxJogadores.Location = new Point(38, 224);
-            comboBoxJogadores.Name = "comboBoxJogadores";
-            comboBoxJogadores.Size = new Size(200, 23);
-            comboBoxJogadores.TabIndex = 17;
+            labelEscolherJogadores.AutoSize = true;
+            labelEscolherJogadores.Font = new Font("Segoe UI", 13F);
+            labelEscolherJogadores.Location = new Point(38, 182);
+            labelEscolherJogadores.Name = "labelEscolherJogadores";
+            labelEscolherJogadores.Size = new Size(190, 25);
+            labelEscolherJogadores.TabIndex = 16;
+            labelEscolherJogadores.Text = "Escolher Jogadores (X)";
             // 
             // buttonSimular
             // 
-            buttonSimular.Location = new Point(38, 291);
+            buttonSimular.Location = new Point(38, 399);
             buttonSimular.Name = "buttonSimular";
             buttonSimular.Size = new Size(200, 50);
             buttonSimular.TabIndex = 18;
-            buttonSimular.Text = "Simular";
+            buttonSimular.Text = "Criar Partidas";
             buttonSimular.UseVisualStyleBackColor = true;
             buttonSimular.Click += buttonSimular_Click;
             // 
-            // SimularTorneioPopUp
+            // listBoxJogadores
+            // 
+            listBoxJogadores.ItemHeight = 15;
+            listBoxJogadores.Location = new Point(38, 227);
+            listBoxJogadores.Name = "listBoxJogadores";
+            listBoxJogadores.SelectionMode = SelectionMode.MultiExtended;
+            listBoxJogadores.Size = new Size(200, 139);
+            listBoxJogadores.TabIndex = 19;
+            listBoxJogadores.SelectedIndexChanged += listBoxJogadores_SelectedIndexChanged;
+            // 
+            // CriarPartidas
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(292, 450);
+            ClientSize = new Size(299, 556);
+            Controls.Add(listBoxJogadores);
             Controls.Add(buttonSimular);
-            Controls.Add(comboBoxJogadores);
-            Controls.Add(label1);
+            Controls.Add(labelEscolherJogadores);
             Controls.Add(comboBoxTorneios);
             Controls.Add(EscolherTorneio);
             Controls.Add(label4);
-            Name = "SimularTorneioPopUp";
+            Name = "CriarPartidas";
             Text = "SimularTorneio";
             ResumeLayout(false);
             PerformLayout();
@@ -116,8 +119,8 @@
         private Label label4;
         private Label EscolherTorneio;
         private ComboBox comboBoxTorneios;
-        private Label label1;
-        private ComboBox comboBoxJogadores;
+        private Label labelEscolherJogadores;
         private Button buttonSimular;
+        private ListBox listBoxJogadores;
     }
 }

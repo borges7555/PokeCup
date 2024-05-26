@@ -24,7 +24,7 @@ namespace Form1
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "SELECT Nickname FROM PokeCup_Jogador"; // Correct table name
+                string query = "SELECT Nickname FROM PokeCup_Jogador";
                 SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
                 DataTable playersTable = new DataTable();
                 adapter.Fill(playersTable);
@@ -144,6 +144,11 @@ namespace Form1
 
         // Lista
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void listBoxPokemons_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

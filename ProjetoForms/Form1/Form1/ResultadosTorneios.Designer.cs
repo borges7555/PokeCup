@@ -1,6 +1,6 @@
 ﻿namespace Form1
 {
-    partial class SimulacoesTorneios
+    partial class ResultadosTorneios
     {
         /// <summary>
         /// Required designer variable.
@@ -51,9 +51,9 @@
             label4.ForeColor = SystemColors.ControlText;
             label4.Location = new Point(48, 33);
             label4.Name = "label4";
-            label4.Size = new Size(308, 37);
+            label4.Size = new Size(274, 37);
             label4.TabIndex = 14;
-            label4.Text = "Resultados Simulações";
+            label4.Text = "Resultados Torneios";
             // 
             // comboBoxTorneios
             // 
@@ -62,6 +62,7 @@
             comboBoxTorneios.Name = "comboBoxTorneios";
             comboBoxTorneios.Size = new Size(200, 23);
             comboBoxTorneios.TabIndex = 17;
+            comboBoxTorneios.SelectedIndexChanged += comboBoxTorneios_SelectedIndexChanged;
             // 
             // EscolherTorneio
             // 
@@ -109,6 +110,7 @@
             dataGridViewBatalhas.Name = "dataGridViewBatalhas";
             dataGridViewBatalhas.Size = new Size(497, 150);
             dataGridViewBatalhas.TabIndex = 21;
+            dataGridViewBatalhas.CellContentClick += dataGridViewBatalhas_CellContentClick;
             // 
             // label3
             // 
@@ -140,7 +142,7 @@
             label5.TabIndex = 24;
             label5.Text = "Vencedor: Borges";
             // 
-            // SimulacoesTorneios
+            // ResultadosTorneios
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -155,7 +157,7 @@
             Controls.Add(comboBoxTorneios);
             Controls.Add(EscolherTorneio);
             Controls.Add(label4);
-            Name = "SimulacoesTorneios";
+            Name = "ResultadosTorneios";
             Text = "SimulacoesTorneios";
             ((System.ComponentModel.ISupportInitialize)dataGridViewJogadoresParticiparam).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewBatalhas).EndInit();
