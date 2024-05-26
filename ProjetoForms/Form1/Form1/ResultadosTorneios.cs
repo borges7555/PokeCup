@@ -17,7 +17,6 @@ namespace Form1
         {
             InitializeComponent();
             LoadTorneios();
-            LoadBatalhas();
             LoadJogadores();
         }
 
@@ -31,7 +30,6 @@ namespace Form1
 
         private void comboBoxTorneios_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadBatalhas();
             LoadJogadores();
         }
 
@@ -55,34 +53,6 @@ namespace Form1
 
         }
 
-        private void LoadBatalhas()
-        {
-            string selectedTorneioID = comboBoxTorneios.SelectedValue?.ToString() ?? "DefaultBatalha";
-
-            if (selectedTorneioID == "DefaultBatalha")
-            {
-                return;
-            }
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    string query = "SELECT * FROM PokeCup_Partida WHERE Torneio_ID = @TorneioID;";
-                    SqlDataAdapter dataAdapter = new SqlDataAdapter(query, connection);
-                    dataAdapter.SelectCommand.Parameters.AddWithValue("@TorneioID", selectedTorneioID);
-
-                    DataTable dataTable = new DataTable();
-                    dataAdapter.Fill(dataTable);
-                    dataGridViewBatalhas.DataSource = dataTable;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erro ao carregar os dados: " + ex.Message);
-                }
-            }
-        }
 
         private void LoadJogadores()
         {
@@ -113,5 +83,24 @@ namespace Form1
             }
         }
 
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBoxEscolherRondas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridViewRondasResultados_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void comboBoxEscolherBatalha_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

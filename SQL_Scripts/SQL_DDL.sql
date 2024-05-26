@@ -113,16 +113,17 @@ CREATE TABLE [PokeCup_Partida](
 );
 
 CREATE TABLE [PokeCup_ResultadoFinal](
-	Partida_Numero INT NOT NULL,
-	Torneio_ID INT NOT NULL,
-	Jogador_Nickname_Vencedor VARCHAR(32) NOT NULL,
-	Num_Rondas_Ganhas_J1 INT NOT NULL,
-	Num_Rondas_Ganhas_J2 INT NOT NULL,
-
-	PRIMARY KEY (Partida_Numero),
-	FOREIGN KEY (Jogador_Nickname_Vencedor) REFERENCES PokeCup_Jogador(Nickname),
-	FOREIGN KEY (Partida_Numero, Torneio_ID) REFERENCES PokeCup_Partida(Numero, Torneio_ID),
+    Partida_Numero INT NOT NULL,
+    Torneio_ID INT NOT NULL,
+    Jogador_Nickname_Vencedor VARCHAR(32) NOT NULL,
+    Num_Rondas_Ganhas_J1 INT NOT NULL,
+    Num_Rondas_Ganhas_J2 INT NOT NULL,
+    
+    PRIMARY KEY (Partida_Numero, Torneio_ID),
+    FOREIGN KEY (Jogador_Nickname_Vencedor) REFERENCES PokeCup_Jogador(Nickname),
+    FOREIGN KEY (Partida_Numero, Torneio_ID) REFERENCES PokeCup_Partida(Numero, Torneio_ID)
 );
+
 
 CREATE TABLE [PokeCup_Ronda](
 	Numero INT NOT NULL,
