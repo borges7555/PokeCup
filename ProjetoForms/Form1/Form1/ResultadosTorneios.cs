@@ -31,6 +31,7 @@ namespace Form1
         private void comboBoxTorneios_SelectedIndexChanged(object sender, EventArgs e)
         {
             LoadJogadores();
+            LoadBatalhas();
         }
 
         private void LoadTorneios()
@@ -83,6 +84,129 @@ namespace Form1
             }
         }
 
+        private void LoadBatalhas()
+        {
+            string selectedTorneioID = comboBoxTorneios.SelectedValue?.ToString() ?? "DefaultTorneio";
+
+            if (selectedTorneioID == "DefaultTorneio")
+            {
+                return;
+            }
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    string query = "SELECT Numero, Torneio_ID, Jogador_Nickname_1, Jogador_Nickname_2 FROM PokeCup_Partida WHERE Torneio_ID = @TorneioID";
+                    SqlDataAdapter dataAdapter = new SqlDataAdapter(query, connection);
+                    dataAdapter.SelectCommand.Parameters.AddWithValue("@TorneioID", selectedTorneioID);
+
+                    DataTable dataTable = new DataTable();
+                    dataAdapter.Fill(dataTable);
+
+                    // Adicionar coluna concatenada para exibir as partidas de forma organizada
+                    dataTable.Columns.Add("Descricao", typeof(string), "'Partida ' + Convert(Numero, 'System.String') + ': ' + Jogador_Nickname_1 + ' vs ' + Jogador_Nickname_2");
+
+                    comboBoxEscolherBatalha.DataSource = dataTable;
+                    comboBoxEscolherBatalha.DisplayMember = "Descricao"; // Usar a nova coluna concatenada
+                    comboBoxEscolherBatalha.ValueMember = "Numero"; // Usar o número da partida como valor
+
+                    dataGridViewJogadoresParticiparam.DataSource = dataTable; // Exibir as partidas na data grid view
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao carregar os dados: " + ex.Message);
+                }
+            }
+        }
+
+        private void LoadRondas()
+        {
+            string selectedTorneioID = comboBoxTorneios.SelectedValue?.ToString() ?? "DefaultTorneio";
+            string selectedPartida = comboBoxEscolherBatalha.SelectedValue?.ToString() ?? "DefaultTorneio";
+
+            if (selectedTorneioID == "DefaultTorneio")
+            {
+                return;
+            }
+
+            if (selectedPartida == "DefaultTorneio")
+            {
+                return;
+            }
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    string query = "SELECT Numero, Num_Pokemons_Vivos_J1, Num_Pokemons_Vivos_J2, Jogador_Nickname_Vencedor FROM PokeCup_Ronda WHERE Torneio_ID = @TorneioID AND Partida_Numero = @PartidaNumero";
+                    SqlDataAdapter dataAdapter = new SqlDataAdapter(query, connection);
+                    dataAdapter.SelectCommand.Parameters.AddWithValue("@TorneioID", selectedTorneioID);
+                    dataAdapter.SelectCommand.Parameters.AddWithValue("@PartidaNumero", selectedPartida);
+
+                    DataTable dataTable = new DataTable();
+                    dataAdapter.Fill(dataTable);
+
+                    // Adicionar coluna concatenada para exibir as rondas de forma organizada
+                    dataTable.Columns.Add("Descricao", typeof(string), "'Ronda ' + Convert(Numero, 'System.String') + ': ' + Jogador_Nickname_Vencedor + ' com ' + Convert(Num_Pokemons_Vivos_J1, 'System.String') + ' vs ' + Convert(Num_Pokemons_Vivos_J2, 'System.String') + ' pokémons vivos'");
+
+                    comboBoxEscolherRondas.DataSource = dataTable;
+                    comboBoxEscolherRondas.DisplayMember = "Descricao"; // Usar a nova coluna concatenada
+                    comboBoxEscolherRondas.ValueMember = "Numero"; // Usar o número da ronda como valor
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao carregar as rondas: " + ex.Message);
+                }
+            }
+        }
+
+        private void LoadResultados()
+        {
+            string selectedTorneioID = comboBoxTorneios.SelectedValue?.ToString() ?? "DefaultTorneio";
+            string selectedPartida = comboBoxEscolherBatalha.SelectedValue?.ToString() ?? "DefaultTorneio";
+            string selectedRonda = comboBoxEscolherRondas.SelectedValue?.ToString() ?? "DefaultTorneio";
+
+            if (selectedTorneioID == "DefaultTorneio")
+            {
+                return;
+            }
+            if (selectedPartida == "DefaultTorneio")
+            {
+                return;
+            }
+            if (selectedRonda == "DefaultTorneio")
+            {
+                return;
+            }
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    string query = "SELECT * FROM PokeCup_ResultadoFinal WHERE Torneio_ID = @TorneioID AND Partida_Numero = @PartidaNumero";
+                    SqlDataAdapter dataAdapter = new SqlDataAdapter(query, connection);
+                    dataAdapter.SelectCommand.Parameters.AddWithValue("@TorneioID", selectedTorneioID);
+                    dataAdapter.SelectCommand.Parameters.AddWithValue("@PartidaNumero", selectedPartida);
+
+                    DataTable dataTable = new DataTable();
+                    dataAdapter.Fill(dataTable);
+
+                    dataGridViewRondasResultados.DataSource = dataTable;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao carregar os resultados: " + ex.Message);
+                }
+            }
+        }
+
+
+
         private void label5_Click(object sender, EventArgs e)
         {
 
@@ -90,7 +214,7 @@ namespace Form1
 
         private void comboBoxEscolherRondas_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            LoadResultados();
         }
 
         private void dataGridViewRondasResultados_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -100,7 +224,7 @@ namespace Form1
 
         private void comboBoxEscolherBatalha_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            LoadRondas();
         }
     }
 }
