@@ -85,6 +85,16 @@ namespace Form1
         {
 
         }
+
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            LoadForm(new Itens());
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            LoadForm(new Ataques());
+        }
     }
 
 }

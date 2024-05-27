@@ -38,3 +38,5 @@ C:\Users\quimr\OneDrive\Documentos\Escola\3Ano\2Semestre\BD\projeto\Git\PokeCup\
 C:\Users\quimr\OneDrive\Documentos\Escola\3Ano\2Semestre\BD\projeto\Git\PokeCup\ProjetoForms\Form1\Form1\obj\Debug\net8.0-windows\Form1.ResultadosTorneios.resources
 C:\Users\quimr\OneDrive\Documentos\Escola\3Ano\2Semestre\BD\projeto\Git\PokeCup\ProjetoForms\Form1\Form1\obj\Debug\net8.0-windows\Form1.AddRondaPopUp.resources
 C:\Users\quimr\OneDrive\Documentos\Escola\3Ano\2Semestre\BD\projeto\Git\PokeCup\ProjetoForms\Form1\Form1\obj\Debug\net8.0-windows\Form1.CriarPartidasPopUp.resources
+C:\Users\quimr\OneDrive\Documentos\Escola\3Ano\2Semestre\BD\projeto\Git\PokeCup\ProjetoForms\Form1\Form1\obj\Debug\net8.0-windows\Form1.Itens.resources
+C:\Users\quimr\OneDrive\Documentos\Escola\3Ano\2Semestre\BD\projeto\Git\PokeCup\ProjetoForms\Form1\Form1\obj\Debug\net8.0-windows\Form1.Ataques.resources

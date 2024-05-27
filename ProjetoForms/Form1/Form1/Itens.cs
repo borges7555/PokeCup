@@ -1,27 +1,36 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.VisualBasic.ApplicationServices;
-using System.Xml.Linq;
 
 namespace Form1
 {
-    public partial class Pokemons : Form
+    public partial class Itens : Form
     {
-        public Pokemons()
+        public Itens()
         {
             InitializeComponent();
         }
 
-        private void Form2_Load(object sender, EventArgs e)
+        private void dataGridViewItens_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void Itens_Load(object sender, EventArgs e)
         {
             // Defina sua string de conexão aqui
             string connectionString = "Server=mednat.ieeta.pt\\SQLSERVER,8101;Database=p9g5;User Id=p9g5;Password=b62F@yZ$u@M%DB;";
 
 
             // Crie a consulta SQL
-            string query = "SELECT * FROM PokeCup_Pokemons";
+            string query = "SELECT * FROM PokeCup_Item";
 
             try
             {
@@ -31,32 +40,13 @@ namespace Form1
                     SqlDataAdapter dataAdapter = new SqlDataAdapter(query, connection);
                     DataTable dataTable = new DataTable();
                     dataAdapter.Fill(dataTable);
-                    dataGridView1.DataSource = dataTable;
+                    dataGridViewItens.DataSource = dataTable;
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Erro ao carregar dados: " + ex.Message);
             }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //AddPokemonPopUp addPokemonForm = new AddPokemonPopUp();
-            //if (addPokemonForm.ShowDialog() == DialogResult.OK)
-            //{
-                // Lógica para adicionar o Pokémon ao sistema
-            //}
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }

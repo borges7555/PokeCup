@@ -31,6 +31,7 @@ namespace Form1
         {
             LoadJogadores();
             LoadBatalhas();
+            LoadVencedor();
         }
 
         private void LoadTorneios()
@@ -39,14 +40,24 @@ namespace Form1
             {
                 string query = "SELECT * FROM PokeCup_Torneio";
                 SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
-                DataTable playersTable = new DataTable();
-                adapter.Fill(playersTable);
+                DataTable torneiosTable = new DataTable();
+                adapter.Fill(torneiosTable);
 
-                comboBoxTorneios.DataSource = playersTable;
+                // Adicionar a linha "Escolher Torneio" ao DataTable
+                DataRow newRow = torneiosTable.NewRow();
+                newRow["ID"] = 0;
+                newRow["Nome"] = "Escolher Torneio";
+                torneiosTable.Rows.InsertAt(newRow, 0);
+
+                comboBoxTorneios.DataSource = torneiosTable;
                 comboBoxTorneios.DisplayMember = "Nome";
                 comboBoxTorneios.ValueMember = "ID";
+
+                // Definir a seleção inicial para "Escolher Torneio"
+                comboBoxTorneios.SelectedIndex = 0;
             }
         }
+
 
         private void dataGridViewBatalhas_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -97,7 +108,24 @@ namespace Form1
                 try
                 {
                     connection.Open();
-                    string query = "SELECT Numero, Torneio_ID, Jogador_Nickname_1, Jogador_Nickname_2 FROM PokeCup_Partida WHERE Torneio_ID = @TorneioID";
+                    string query = @"
+                SELECT 
+                    P.Numero, 
+                    P.Torneio_ID, 
+                    P.Jogador_Nickname_1, 
+                    P.Jogador_Nickname_2, 
+                    R.Jogador_Nickname_Vencedor, 
+                    R.Num_Rondas_Ganhas_J1, 
+                    R.Num_Rondas_Ganhas_J2
+                FROM 
+                    PokeCup_Partida P
+                LEFT JOIN 
+                    PokeCup_ResultadoFinal R
+                ON 
+                    P.Numero = R.Partida_Numero AND P.Torneio_ID = R.Torneio_ID
+                WHERE 
+                    P.Torneio_ID = @TorneioID";
+
                     SqlDataAdapter dataAdapter = new SqlDataAdapter(query, connection);
                     dataAdapter.SelectCommand.Parameters.AddWithValue("@TorneioID", selectedTorneioID);
 
@@ -105,13 +133,28 @@ namespace Form1
                     dataAdapter.Fill(dataTable);
 
                     // Adicionar coluna concatenada para exibir as partidas de forma organizada
-                    dataTable.Columns.Add("Descricao", typeof(string), "'Partida ' + Convert(Numero, 'System.String') + ': ' + Jogador_Nickname_1 + ' vs ' + Jogador_Nickname_2");
+                    dataTable.Columns.Add("Descricao", typeof(string));
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        string descricaoPartida = $"Partida {row["Numero"]}: {row["Jogador_Nickname_1"]} vs {row["Jogador_Nickname_2"]}";
+                        if (!DBNull.Value.Equals(row["Jogador_Nickname_Vencedor"]))
+                        {
+                            descricaoPartida += $" - Vencedor: {row["Jogador_Nickname_Vencedor"]} (J1: {row["Num_Rondas_Ganhas_J1"]} vs J2: {row["Num_Rondas_Ganhas_J2"]})";
+                        }
+                        row["Descricao"] = descricaoPartida;
+                    }
+
+                    // Adicionar item padrão ao DataTable
+                    DataRow defaultRow = dataTable.NewRow();
+                    defaultRow["Numero"] = 0; // ou outro valor que faça sentido como padrão
+                    defaultRow["Descricao"] = "Selecione uma Batalha";
+                    dataTable.Rows.InsertAt(defaultRow, 0);
 
                     comboBoxEscolherBatalha.DataSource = dataTable;
                     comboBoxEscolherBatalha.DisplayMember = "Descricao"; // Usar a nova coluna concatenada
                     comboBoxEscolherBatalha.ValueMember = "Numero"; // Usar o número da partida como valor
 
-                    dataGridViewJogadoresParticiparam.DataSource = dataTable; // Exibir as partidas na data grid view
+                    comboBoxEscolherBatalha.SelectedIndex = 0; // Selecionar o item padrão
                 }
                 catch (Exception ex)
                 {
@@ -119,6 +162,9 @@ namespace Form1
                 }
             }
         }
+
+
+
 
         private void LoadRondas()
         {
@@ -140,7 +186,23 @@ namespace Form1
                 try
                 {
                     connection.Open();
-                    string query = "SELECT Numero, Num_Pokemons_Vivos_J1, Num_Pokemons_Vivos_J2, Jogador_Nickname_Vencedor FROM PokeCup_Ronda WHERE Torneio_ID = @TorneioID AND Partida_Numero = @PartidaNumero";
+                    string query = @"
+                SELECT 
+                    R.Numero, 
+                    R.Num_Pokemons_Vivos_J1, 
+                    R.Num_Pokemons_Vivos_J2, 
+                    R.Jogador_Nickname_Vencedor, 
+                    P.Jogador_Nickname_1, 
+                    P.Jogador_Nickname_2 
+                FROM 
+                    PokeCup_Ronda R
+                INNER JOIN 
+                    PokeCup_Partida P 
+                ON 
+                    R.Partida_Numero = P.Numero AND R.Torneio_ID = P.Torneio_ID
+                WHERE 
+                    R.Torneio_ID = @TorneioID AND R.Partida_Numero = @PartidaNumero";
+
                     SqlDataAdapter dataAdapter = new SqlDataAdapter(query, connection);
                     dataAdapter.SelectCommand.Parameters.AddWithValue("@TorneioID", selectedTorneioID);
                     dataAdapter.SelectCommand.Parameters.AddWithValue("@PartidaNumero", selectedPartida);
@@ -149,7 +211,12 @@ namespace Form1
                     dataAdapter.Fill(dataTable);
 
                     // Adicionar coluna concatenada para exibir as rondas de forma organizada
-                    dataTable.Columns.Add("Descricao", typeof(string), "'Ronda ' + Convert(Numero, 'System.String') + ': ' + Jogador_Nickname_Vencedor + ' com ' + Convert(Num_Pokemons_Vivos_J1, 'System.String') + ' vs ' + Convert(Num_Pokemons_Vivos_J2, 'System.String') + ' pokémons vivos'");
+                    dataTable.Columns.Add("Descricao", typeof(string));
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        string descricaoRonda = $"Ronda {row["Numero"]}: {row["Jogador_Nickname_1"]} ({row["Num_Pokemons_Vivos_J1"]} pokémons vivos) vs {row["Jogador_Nickname_2"]} ({row["Num_Pokemons_Vivos_J2"]} pokémons vivos) - Vencedor: {row["Jogador_Nickname_Vencedor"]}";
+                        row["Descricao"] = descricaoRonda;
+                    }
 
                     comboBoxEscolherRondas.DataSource = dataTable;
                     comboBoxEscolherRondas.DisplayMember = "Descricao"; // Usar a nova coluna concatenada
@@ -163,21 +230,19 @@ namespace Form1
             }
         }
 
-        private void LoadResultados()
+
+
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LoadVencedor()
         {
             string selectedTorneioID = comboBoxTorneios.SelectedValue?.ToString() ?? "DefaultTorneio";
-            string selectedPartida = comboBoxEscolherBatalha.SelectedValue?.ToString() ?? "DefaultTorneio";
-            string selectedRonda = comboBoxEscolherRondas.SelectedValue?.ToString() ?? "DefaultTorneio";
 
             if (selectedTorneioID == "DefaultTorneio")
-            {
-                return;
-            }
-            if (selectedPartida == "DefaultTorneio")
-            {
-                return;
-            }
-            if (selectedRonda == "DefaultTorneio")
             {
                 return;
             }
@@ -187,29 +252,33 @@ namespace Form1
                 try
                 {
                     connection.Open();
-                    string query = "SELECT * FROM PokeCup_ResultadoFinal WHERE Torneio_ID = @TorneioID AND Partida_Numero = @PartidaNumero";
-                    SqlDataAdapter dataAdapter = new SqlDataAdapter(query, connection);
-                    dataAdapter.SelectCommand.Parameters.AddWithValue("@TorneioID", selectedTorneioID);
-                    dataAdapter.SelectCommand.Parameters.AddWithValue("@PartidaNumero", selectedPartida);
+                    string query = @"
+                SELECT TOP 1 Jogador_Nickname_Vencedor 
+                FROM PokeCup_ResultadoFinal 
+                WHERE Torneio_ID = @TorneioID 
+                ORDER BY Partida_Numero DESC";
 
-                    DataTable dataTable = new DataTable();
-                    dataAdapter.Fill(dataTable);
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@TorneioID", selectedTorneioID);
 
-                    dataGridViewRondasResultados.DataSource = dataTable;
+                    string vencedor = (string)command.ExecuteScalar();
+
+                    if (!string.IsNullOrEmpty(vencedor))
+                    {
+                        label5.Text = $"Vencedor: {vencedor}";
+                    }
+                    else
+                    {
+                        label5.Text = "Vencedor: ______";
+                    }
                 }
                 catch (Exception ex)
                 {
-                    //MessageBox.Show("Erro ao carregar os resultados: " + ex.Message);
+                    //MessageBox.Show("Erro ao carregar o vencedor: " + ex.Message);
                 }
             }
         }
 
-
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void comboBoxEscolherRondas_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -223,7 +292,6 @@ namespace Form1
         private void comboBoxEscolherBatalha_SelectedIndexChanged(object sender, EventArgs e)
         {
             LoadRondas();
-            LoadResultados();
         }
     }
 }
