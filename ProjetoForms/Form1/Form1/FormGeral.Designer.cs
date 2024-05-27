@@ -14,6 +14,7 @@ namespace Form1
         private void InitializeComponent()
         {
             panelSidebar = new Panel();
+            button6 = new Button();
             button7 = new Button();
             button5 = new Button();
             button4 = new Button();
@@ -29,6 +30,7 @@ namespace Form1
             // panelSidebar
             // 
             panelSidebar.BackColor = SystemColors.ButtonFace;
+            panelSidebar.Controls.Add(button6);
             panelSidebar.Controls.Add(button7);
             panelSidebar.Controls.Add(button5);
             panelSidebar.Controls.Add(button4);
@@ -43,16 +45,29 @@ namespace Form1
             panelSidebar.Size = new Size(113, 638);
             panelSidebar.TabIndex = 1;
             // 
+            // button6
+            // 
+            button6.BackColor = Color.DarkSalmon;
+            button6.Dock = DockStyle.Top;
+            button6.ForeColor = SystemColors.ButtonFace;
+            button6.Location = new Point(0, 320);
+            button6.Name = "button6";
+            button6.Size = new Size(113, 40);
+            button6.TabIndex = 11;
+            button6.Text = "Server";
+            button6.UseVisualStyleBackColor = false;
+            button6.Click += button6_Click_2;
+            // 
             // button7
             // 
-            button7.BackColor = Color.DarkSalmon;
+            button7.BackColor = SystemColors.Highlight;
             button7.Dock = DockStyle.Top;
             button7.ForeColor = SystemColors.ButtonFace;
             button7.Location = new Point(0, 280);
             button7.Name = "button7";
             button7.Size = new Size(113, 40);
             button7.TabIndex = 10;
-            button7.Text = "Server";
+            button7.Text = "Pokemons";
             button7.UseVisualStyleBackColor = false;
             button7.Click += button7_Click;
             // 
@@ -84,27 +99,27 @@ namespace Form1
             // 
             // button3
             // 
-            button3.BackColor = SystemColors.Highlight;
+            button3.BackColor = SystemColors.Desktop;
             button3.Dock = DockStyle.Top;
             button3.ForeColor = SystemColors.ButtonFace;
             button3.Location = new Point(0, 160);
             button3.Name = "button3";
             button3.Size = new Size(113, 40);
             button3.TabIndex = 5;
-            button3.Text = "Jogadores";
+            button3.Text = "Resultados";
             button3.UseVisualStyleBackColor = false;
             button3.Click += button3_Click;
             // 
             // button2
             // 
-            button2.BackColor = SystemColors.Highlight;
+            button2.BackColor = SystemColors.Desktop;
             button2.Dock = DockStyle.Top;
             button2.ForeColor = SystemColors.ButtonFace;
             button2.Location = new Point(0, 120);
             button2.Name = "button2";
             button2.Size = new Size(113, 40);
             button2.TabIndex = 4;
-            button2.Text = "Pokemons";
+            button2.Text = "Rondas";
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
@@ -117,7 +132,7 @@ namespace Form1
             button1.Name = "button1";
             button1.Size = new Size(113, 40);
             button1.TabIndex = 3;
-            button1.Text = "Resultados";
+            button1.Text = "Equipas";
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
@@ -130,7 +145,7 @@ namespace Form1
             btnForm1.Name = "btnForm1";
             btnForm1.Size = new Size(113, 40);
             btnForm1.TabIndex = 0;
-            btnForm1.Text = "Equipas";
+            btnForm1.Text = "Jogadores";
             btnForm1.UseVisualStyleBackColor = false;
             btnForm1.Click += btnForm1_Click;
             // 
@@ -176,5 +191,6 @@ namespace Form1
         private Button button4;
         private Button button7;
         private Button button5;
+        private Button button6;
     }
 }
