@@ -38,7 +38,7 @@ namespace Form1
 
         private void btnForm1_Click(object sender, EventArgs e)
         {
-            LoadForm(new Jogadores());
+            LoadForm(new Equipas());
         }
 
         private void btnForm2_Click(object sender, EventArgs e)
@@ -53,7 +53,7 @@ namespace Form1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            LoadForm(new Equipas());
+            LoadForm(new ResultadosTorneios());
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -63,12 +63,12 @@ namespace Form1
 
         private void button3_Click(object sender, EventArgs e)
         {
-            LoadForm(new ConnectToServer());
+            LoadForm(new Jogadores());
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            LoadForm(new ResultadosTorneios());
+            LoadForm(new Ataques());
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -93,7 +93,12 @@ namespace Form1
 
         private void button7_Click(object sender, EventArgs e)
         {
-            LoadForm(new Ataques());
+            LoadForm(new ConnectToServer());
+        }
+
+        private void button6_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 

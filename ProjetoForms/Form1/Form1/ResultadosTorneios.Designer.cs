@@ -31,14 +31,13 @@
             label4 = new Label();
             comboBoxTorneios = new ComboBox();
             EscolherTorneio = new Label();
-            dataGridViewJogadoresParticiparam = new DataGridView();
             label1 = new Label();
             label2 = new Label();
             label5 = new Label();
-            comboBoxEscolherRondas = new ComboBox();
             labelEscolherRondas = new Label();
             comboBoxEscolherBatalha = new ComboBox();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewJogadoresParticiparam).BeginInit();
+            listBoxRondas = new ListBox();
+            listBoxJogadores = new ListBox();
             SuspendLayout();
             // 
             // label4
@@ -47,19 +46,18 @@
             label4.BackColor = SystemColors.Control;
             label4.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = SystemColors.ControlText;
-            label4.Location = new Point(55, 44);
+            label4.Location = new Point(48, 33);
             label4.Name = "label4";
-            label4.Size = new Size(339, 46);
+            label4.Size = new Size(274, 37);
             label4.TabIndex = 14;
             label4.Text = "Resultados Torneios";
             // 
             // comboBoxTorneios
             // 
             comboBoxTorneios.FormattingEnabled = true;
-            comboBoxTorneios.Location = new Point(55, 181);
-            comboBoxTorneios.Margin = new Padding(3, 4, 3, 4);
+            comboBoxTorneios.Location = new Point(48, 136);
             comboBoxTorneios.Name = "comboBoxTorneios";
-            comboBoxTorneios.Size = new Size(228, 28);
+            comboBoxTorneios.Size = new Size(200, 23);
             comboBoxTorneios.TabIndex = 17;
             comboBoxTorneios.SelectedIndexChanged += comboBoxTorneios_SelectedIndexChanged;
             // 
@@ -67,40 +65,29 @@
             // 
             EscolherTorneio.AutoSize = true;
             EscolherTorneio.Font = new Font("Segoe UI", 13F);
-            EscolherTorneio.Location = new Point(55, 131);
+            EscolherTorneio.Location = new Point(48, 98);
             EscolherTorneio.Name = "EscolherTorneio";
-            EscolherTorneio.Size = new Size(172, 30);
+            EscolherTorneio.Size = new Size(140, 25);
             EscolherTorneio.TabIndex = 16;
             EscolherTorneio.Text = "Escolher Torneio";
-            // 
-            // dataGridViewJogadoresParticiparam
-            // 
-            dataGridViewJogadoresParticiparam.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewJogadoresParticiparam.Location = new Point(55, 309);
-            dataGridViewJogadoresParticiparam.Margin = new Padding(3, 4, 3, 4);
-            dataGridViewJogadoresParticiparam.Name = "dataGridViewJogadoresParticiparam";
-            dataGridViewJogadoresParticiparam.RowHeadersWidth = 51;
-            dataGridViewJogadoresParticiparam.Size = new Size(283, 220);
-            dataGridViewJogadoresParticiparam.TabIndex = 18;
-            dataGridViewJogadoresParticiparam.CellContentClick += dataGridViewJogadoresParticiparam_CellContentClick;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 13F);
-            label1.Location = new Point(55, 252);
+            label1.Location = new Point(48, 189);
             label1.Name = "label1";
-            label1.Size = new Size(283, 30);
+            label1.Size = new Size(111, 25);
             label1.TabIndex = 19;
-            label1.Text = "Jogadores que participaram";
+            label1.Text = "Participantes";
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 13F);
-            label2.Location = new Point(377, 309);
+            label2.Location = new Point(308, 189);
             label2.Name = "label2";
-            label2.Size = new Size(165, 30);
+            label2.Size = new Size(136, 25);
             label2.TabIndex = 20;
             label2.Text = "Escolher Partida";
             // 
@@ -110,64 +97,71 @@
             label5.BackColor = SystemColors.Control;
             label5.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = SystemColors.ActiveCaptionText;
-            label5.Location = new Point(382, 163);
+            label5.Location = new Point(308, 122);
             label5.Name = "label5";
-            label5.Size = new Size(273, 46);
+            label5.Size = new Size(218, 37);
             label5.TabIndex = 24;
             label5.Text = "Vencedor: ______";
             label5.Click += label5_Click;
-            // 
-            // comboBoxEscolherRondas
-            // 
-            comboBoxEscolherRondas.FormattingEnabled = true;
-            comboBoxEscolherRondas.Location = new Point(377, 479);
-            comboBoxEscolherRondas.Margin = new Padding(3, 4, 3, 4);
-            comboBoxEscolherRondas.Name = "comboBoxEscolherRondas";
-            comboBoxEscolherRondas.Size = new Size(947, 28);
-            comboBoxEscolherRondas.TabIndex = 26;
-            comboBoxEscolherRondas.SelectedIndexChanged += comboBoxEscolherRondas_SelectedIndexChanged;
             // 
             // labelEscolherRondas
             // 
             labelEscolherRondas.AutoSize = true;
             labelEscolherRondas.Font = new Font("Segoe UI", 13F);
-            labelEscolherRondas.Location = new Point(382, 428);
+            labelEscolherRondas.Location = new Point(312, 278);
             labelEscolherRondas.Name = "labelEscolherRondas";
-            labelEscolherRondas.Size = new Size(160, 30);
+            labelEscolherRondas.Size = new Size(133, 25);
             labelEscolherRondas.TabIndex = 25;
             labelEscolherRondas.Text = "Escolher Ronda";
             // 
             // comboBoxEscolherBatalha
             // 
             comboBoxEscolherBatalha.FormattingEnabled = true;
-            comboBoxEscolherBatalha.Location = new Point(377, 361);
-            comboBoxEscolherBatalha.Margin = new Padding(3, 4, 3, 4);
+            comboBoxEscolherBatalha.Location = new Point(308, 228);
             comboBoxEscolherBatalha.Name = "comboBoxEscolherBatalha";
-            comboBoxEscolherBatalha.Size = new Size(947, 28);
+            comboBoxEscolherBatalha.Size = new Size(634, 23);
             comboBoxEscolherBatalha.TabIndex = 27;
             comboBoxEscolherBatalha.SelectedIndexChanged += comboBoxEscolherBatalha_SelectedIndexChanged;
             // 
+            // listBoxRondas
+            // 
+            listBoxRondas.ItemHeight = 15;
+            listBoxRondas.Location = new Point(308, 317);
+            listBoxRondas.Name = "listBoxRondas";
+            listBoxRondas.SelectionMode = SelectionMode.MultiExtended;
+            listBoxRondas.Size = new Size(634, 124);
+            listBoxRondas.TabIndex = 28;
+            listBoxRondas.SelectedIndexChanged += listBoxRondas_SelectedIndexChanged;
+            // 
+            // listBoxJogadores
+            // 
+            listBoxJogadores.ItemHeight = 15;
+            listBoxJogadores.Location = new Point(48, 232);
+            listBoxJogadores.Name = "listBoxJogadores";
+            listBoxJogadores.SelectionMode = SelectionMode.MultiExtended;
+            listBoxJogadores.Size = new Size(200, 139);
+            listBoxJogadores.TabIndex = 29;
+            listBoxJogadores.SelectedIndexChanged += listBoxJogadores_SelectedIndexChanged;
+            // 
             // ResultadosTorneios
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1347, 564);
+            ClientSize = new Size(1179, 668);
             ControlBox = false;
+            Controls.Add(listBoxJogadores);
+            Controls.Add(listBoxRondas);
             Controls.Add(comboBoxEscolherBatalha);
-            Controls.Add(comboBoxEscolherRondas);
             Controls.Add(labelEscolherRondas);
             Controls.Add(label5);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(dataGridViewJogadoresParticiparam);
             Controls.Add(comboBoxTorneios);
             Controls.Add(EscolherTorneio);
             Controls.Add(label4);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 4, 3, 4);
             Name = "ResultadosTorneios";
             Text = "SimulacoesTorneios";
-            ((System.ComponentModel.ISupportInitialize)dataGridViewJogadoresParticiparam).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -181,8 +175,9 @@
         private Label label1;
         private Label label2;
         private Label label5;
-        private ComboBox comboBoxEscolherRondas;
         private Label labelEscolherRondas;
         private ComboBox comboBoxEscolherBatalha;
+        private ListBox listBoxRondas;
+        private ListBox listBoxJogadores;
     }
 }

@@ -85,7 +85,13 @@ namespace Form1
 
                     DataTable dataTable = new DataTable();
                     dataAdapter.Fill(dataTable);
-                    dataGridViewJogadoresParticiparam.DataSource = dataTable;
+
+                    listBoxJogadores.Items.Clear();
+
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        listBoxJogadores.Items.Add(row["Jogador_Nickname"].ToString());
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -93,6 +99,7 @@ namespace Form1
                 }
             }
         }
+
 
         private void LoadBatalhas()
         {
@@ -147,7 +154,7 @@ namespace Form1
                     // Adicionar item padrão ao DataTable
                     DataRow defaultRow = dataTable.NewRow();
                     defaultRow["Numero"] = 0; // ou outro valor que faça sentido como padrão
-                    defaultRow["Descricao"] = "Selecione uma Batalha";
+                    defaultRow["Descricao"] = "Selecione uma Partida";
                     dataTable.Rows.InsertAt(defaultRow, 0);
 
                     comboBoxEscolherBatalha.DataSource = dataTable;
@@ -210,18 +217,13 @@ namespace Form1
                     DataTable dataTable = new DataTable();
                     dataAdapter.Fill(dataTable);
 
-                    // Adicionar coluna concatenada para exibir as rondas de forma organizada
-                    dataTable.Columns.Add("Descricao", typeof(string));
+                    listBoxRondas.Items.Clear();
+
                     foreach (DataRow row in dataTable.Rows)
                     {
                         string descricaoRonda = $"Ronda {row["Numero"]}: {row["Jogador_Nickname_1"]} ({row["Num_Pokemons_Vivos_J1"]} pokémons vivos) vs {row["Jogador_Nickname_2"]} ({row["Num_Pokemons_Vivos_J2"]} pokémons vivos) - Vencedor: {row["Jogador_Nickname_Vencedor"]}";
-                        row["Descricao"] = descricaoRonda;
+                        listBoxRondas.Items.Add(descricaoRonda);
                     }
-
-                    comboBoxEscolherRondas.DataSource = dataTable;
-                    comboBoxEscolherRondas.DisplayMember = "Descricao"; // Usar a nova coluna concatenada
-                    comboBoxEscolherRondas.ValueMember = "Numero"; // Usar o número da ronda como valor
-
                 }
                 catch (Exception ex)
                 {
@@ -229,6 +231,7 @@ namespace Form1
                 }
             }
         }
+
 
 
 
@@ -292,6 +295,16 @@ namespace Form1
         private void comboBoxEscolherBatalha_SelectedIndexChanged(object sender, EventArgs e)
         {
             LoadRondas();
+        }
+
+        private void listBoxRondas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBoxJogadores_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

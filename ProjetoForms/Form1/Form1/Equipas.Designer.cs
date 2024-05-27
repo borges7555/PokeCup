@@ -30,7 +30,7 @@
             // 
             comboBoxPlayer.Location = new Point(50, 138);
             comboBoxPlayer.Name = "comboBoxPlayer";
-            comboBoxPlayer.Size = new Size(200, 28);
+            comboBoxPlayer.Size = new Size(200, 23);
             comboBoxPlayer.TabIndex = 0;
             comboBoxPlayer.SelectedIndexChanged += comboBoxPlayer_SelectedIndexChanged;
             // 
@@ -39,12 +39,13 @@
             comboBoxTier.Items.AddRange(new object[] { "Uber", "OU", "UU", "PU", "NU", "RU" });
             comboBoxTier.Location = new Point(50, 209);
             comboBoxTier.Name = "comboBoxTier";
-            comboBoxTier.Size = new Size(200, 28);
+            comboBoxTier.Size = new Size(200, 23);
             comboBoxTier.TabIndex = 1;
             comboBoxTier.SelectedIndexChanged += comboBoxTier_SelectedIndexChanged;
             // 
             // listBoxPokemons
             // 
+            listBoxPokemons.ItemHeight = 15;
             listBoxPokemons.Location = new Point(50, 291);
             listBoxPokemons.Name = "listBoxPokemons";
             listBoxPokemons.SelectionMode = SelectionMode.MultiExtended;
@@ -54,9 +55,9 @@
             // 
             // buttonCreateTeam
             // 
-            buttonCreateTeam.Location = new Point(50, 461);
+            buttonCreateTeam.Location = new Point(50, 445);
             buttonCreateTeam.Name = "buttonCreateTeam";
-            buttonCreateTeam.Size = new Size(200, 23);
+            buttonCreateTeam.Size = new Size(200, 39);
             buttonCreateTeam.TabIndex = 3;
             buttonCreateTeam.Text = "Create Team";
             buttonCreateTeam.Click += buttonCreateTeam_Click;
@@ -69,7 +70,7 @@
             label4.ForeColor = SystemColors.ControlText;
             label4.Location = new Point(50, 28);
             label4.Name = "label4";
-            label4.Size = new Size(215, 46);
+            label4.Size = new Size(173, 37);
             label4.TabIndex = 5;
             label4.Text = "Criar Equipa";
             // 
@@ -79,7 +80,7 @@
             label1.Font = new Font("Segoe UI", 12F);
             label1.Location = new Point(50, 102);
             label1.Name = "label1";
-            label1.Size = new Size(84, 28);
+            label1.Size = new Size(66, 21);
             label1.TabIndex = 6;
             label1.Text = "Jogador";
             // 
@@ -89,7 +90,7 @@
             label2.Font = new Font("Segoe UI", 12F);
             label2.Location = new Point(50, 176);
             label2.Name = "label2";
-            label2.Size = new Size(44, 28);
+            label2.Size = new Size(36, 21);
             label2.TabIndex = 7;
             label2.Text = "Tier";
             // 
@@ -99,7 +100,7 @@
             label3.Font = new Font("Segoe UI", 12F);
             label3.Location = new Point(50, 255);
             label3.Name = "label3";
-            label3.Size = new Size(199, 28);
+            label3.Size = new Size(159, 21);
             label3.TabIndex = 8;
             label3.Text = "Pokemons Escolhidos";
             // 
@@ -108,7 +109,7 @@
             button1.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.Location = new Point(281, 291);
             button1.Name = "button1";
-            button1.Size = new Size(48, 42);
+            button1.Size = new Size(48, 41);
             button1.TabIndex = 9;
             button1.Text = "+";
             button1.TextAlign = ContentAlignment.TopCenter;
@@ -135,7 +136,7 @@
             label5.ForeColor = SystemColors.ControlText;
             label5.Location = new Point(379, 102);
             label5.Name = "label5";
-            label5.Size = new Size(226, 46);
+            label5.Size = new Size(183, 37);
             label5.TabIndex = 21;
             label5.Text = "Lista Equipas";
             // 
