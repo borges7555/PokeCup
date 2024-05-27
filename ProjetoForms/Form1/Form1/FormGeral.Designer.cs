@@ -14,6 +14,8 @@ namespace Form1
         private void InitializeComponent()
         {
             panelSidebar = new Panel();
+            button7 = new Button();
+            button5 = new Button();
             button6 = new Button();
             button4 = new Button();
             button3 = new Button();
@@ -28,6 +30,8 @@ namespace Form1
             // panelSidebar
             // 
             panelSidebar.BackColor = SystemColors.ButtonFace;
+            panelSidebar.Controls.Add(button7);
+            panelSidebar.Controls.Add(button5);
             panelSidebar.Controls.Add(button6);
             panelSidebar.Controls.Add(button4);
             panelSidebar.Controls.Add(button3);
@@ -40,6 +44,32 @@ namespace Form1
             panelSidebar.Name = "panelSidebar";
             panelSidebar.Size = new Size(85, 638);
             panelSidebar.TabIndex = 1;
+            // 
+            // button7
+            // 
+            button7.BackColor = SystemColors.Desktop;
+            button7.Dock = DockStyle.Top;
+            button7.ForeColor = SystemColors.ButtonFace;
+            button7.Location = new Point(0, 320);
+            button7.Name = "button7";
+            button7.Size = new Size(85, 40);
+            button7.TabIndex = 10;
+            button7.Text = "Ataques";
+            button7.UseVisualStyleBackColor = false;
+            button7.Click += button7_Click;
+            // 
+            // button5
+            // 
+            button5.BackColor = SystemColors.Desktop;
+            button5.Dock = DockStyle.Top;
+            button5.ForeColor = SystemColors.ButtonFace;
+            button5.Location = new Point(0, 280);
+            button5.Name = "button5";
+            button5.Size = new Size(85, 40);
+            button5.TabIndex = 9;
+            button5.Text = "Itens";
+            button5.UseVisualStyleBackColor = false;
+            button5.Click += button5_Click_1;
             // 
             // button6
             // 
@@ -160,5 +190,7 @@ namespace Form1
         private Button button3;
         private Button button4;
         private Button button6;
+        private Button button7;
+        private Button button5;
     }
 }

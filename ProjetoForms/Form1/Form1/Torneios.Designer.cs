@@ -37,7 +37,8 @@
             // 
             // button5
             // 
-            button5.Location = new Point(395, 43);
+            button5.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            button5.Location = new Point(526, 43);
             button5.Margin = new Padding(3, 4, 3, 4);
             button5.Name = "button5";
             button5.Size = new Size(179, 47);
@@ -60,19 +61,22 @@
             // 
             // dataGridView1
             // 
+            dataGridView1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Location = new Point(43, 121);
             dataGridView1.Margin = new Padding(3, 4, 3, 4);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 24;
-            dataGridView1.Size = new Size(730, 291);
+            dataGridView1.Size = new Size(861, 297);
             dataGridView1.TabIndex = 18;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // buttonSimularTorneio
             // 
-            buttonSimularTorneio.Location = new Point(594, 43);
+            buttonSimularTorneio.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            buttonSimularTorneio.Location = new Point(725, 43);
             buttonSimularTorneio.Margin = new Padding(3, 4, 3, 4);
             buttonSimularTorneio.Name = "buttonSimularTorneio";
             buttonSimularTorneio.Size = new Size(179, 47);
@@ -87,7 +91,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            ClientSize = new Size(800, 451);
+            ClientSize = new Size(931, 457);
             ControlBox = false;
             Controls.Add(buttonSimularTorneio);
             Controls.Add(dataGridView1);
