@@ -11,9 +11,9 @@ VALUES(
 )
 END
 
---EXEC CreateJogador
-	--@nickname = 'Joaquim',
-	--@w_l = 0;
+EXEC CreateJogador
+	@nickname = 'Joaquim',
+	@w_l = 0;
 
 CREATE PROCEDURE CreatePokemonEscolhido
 	@nome VARCHAR(32),
