@@ -239,3 +239,29 @@ EXEC CreateResultadoFinal
 	@jogadorvencedor = 'Borges',
 	@rondas_ganhas1 = 2,
 	@rondas_ganhas2 = 1;
+
+CREATE PROCEDURE DeleteJogador
+    @Nickname VARCHAR(32)
+AS BEGIN
+    -- Verifica se o jogador tem dependências na tabela PokeCup_TorneioJogador
+    IF EXISTS (SELECT 1 FROM PokeCup_TorneioJogador WHERE Jogador_Nickname = @Nickname)
+    BEGIN
+        -- Se existir, não faz a exclusão e retorna uma mensagem de erro
+        RAISERROR ('O jogador já participou ou está a particpar num torneio e não pode ser excluído.', 16, 1);
+        RETURN;
+    END
+    -- Deleta as entradas na tabela PokeCup_PokemonEscolhido associadas ao jogador
+    DELETE FROM PokeCup_EquipaPokemons
+    WHERE Jogador_Nickname = @Nickname;
+    -- Deleta as entradas na tabela PokeCup_EquipaPokemons associadas ao jogador
+    DELETE FROM PokeCup_PokemonEscolhido
+    WHERE Jogador_Nickname = @Nickname;
+    -- Deleta a entrada na tabela PokeCup_Jogador
+    DELETE FROM PokeCup_Jogador
+    WHERE Nickname = @Nickname;
+    PRINT 'Jogador excluído com sucesso.';
+END;
+
+--DROP PROCEDURE IF EXISTS DeleteJogador;
+
+EXEC DeleteJogador @Nickname = 'Bot';
