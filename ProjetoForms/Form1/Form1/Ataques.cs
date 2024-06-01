@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Form1
@@ -16,37 +10,67 @@ namespace Form1
         public Ataques()
         {
             InitializeComponent();
-        }
-
-        private void dataGridViewAtaques_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
+            ConfigureListView();
         }
 
         private void Ataques_Load(object sender, EventArgs e)
         {
-            // Defina sua string de conexão aqui
+            LoadAtaques();
+        }
+
+        private void ConfigureListView()
+        {
+            listViewAtaques.View = View.Details;
+            listViewAtaques.Columns.Add("Nome", -2, HorizontalAlignment.Left);
+            listViewAtaques.Columns.Add("Tipo", -2, HorizontalAlignment.Left);
+            listViewAtaques.Columns.Add("Poder", -2, HorizontalAlignment.Left);
+            listViewAtaques.Columns.Add("Accuracy", -2, HorizontalAlignment.Left);
+            listViewAtaques.Columns.Add("Categoria", -2, HorizontalAlignment.Left);
+            listViewAtaques.FullRowSelect = true;
+            listViewAtaques.GridLines = true;
+        }
+
+        private void LoadAtaques()
+        {
             string connectionString = "Server=mednat.ieeta.pt\\SQLSERVER,8101;Database=p9g5;User Id=p9g5;Password=b62F@yZ$u@M%DB;";
-
-
-            // Crie a consulta SQL
             string query = "SELECT * FROM PokeCup_Ataque";
 
             try
             {
-                // Use SqlConnection, SqlDataAdapter e DataTable para preencher o DataGridView
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     SqlDataAdapter dataAdapter = new SqlDataAdapter(query, connection);
                     DataTable dataTable = new DataTable();
                     dataAdapter.Fill(dataTable);
-                    dataGridViewAtaques.DataSource = dataTable;
+
+                    listViewAtaques.Items.Clear();
+
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        ListViewItem item = new ListViewItem(row["Nome"].ToString());
+                        item.SubItems.Add(row["Tipo"].ToString());
+                        item.SubItems.Add(row["Poder"].ToString());
+                        item.SubItems.Add(row["Accuracy"].ToString());
+                        item.SubItems.Add(row["Categoria"].ToString());
+                        listViewAtaques.Items.Add(item);
+                    }
+
+                    // Ajustar a largura das colunas
+                    foreach (ColumnHeader column in listViewAtaques.Columns)
+                    {
+                        column.Width = -2; // Auto ajuste da largura da coluna
+                    }
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Erro ao carregar dados: " + ex.Message);
             }
+        }
+
+        private void listViewAtaques_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Código para lidar com a seleção de itens no ListView (se necessário)
         }
     }
 }

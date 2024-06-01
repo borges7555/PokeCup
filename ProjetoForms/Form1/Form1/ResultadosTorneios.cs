@@ -117,21 +117,17 @@ namespace Form1
                     connection.Open();
                     string query = @"
                 SELECT 
-                    P.Numero, 
-                    P.Torneio_ID, 
-                    P.Jogador_Nickname_1, 
-                    P.Jogador_Nickname_2, 
-                    R.Jogador_Nickname_Vencedor, 
-                    R.Num_Rondas_Ganhas_J1, 
-                    R.Num_Rondas_Ganhas_J2
+                    Numero, 
+                    Torneio_ID, 
+                    Jogador_Nickname_1, 
+                    Jogador_Nickname_2, 
+                    Jogador_Nickname_Vencedor, 
+                    Num_Rondas_Ganhas_J1, 
+                    Num_Rondas_Ganhas_J2
                 FROM 
-                    PokeCup_Partida P
-                LEFT JOIN 
-                    PokeCup_ResultadoFinal R
-                ON 
-                    P.Numero = R.Partida_Numero AND P.Torneio_ID = R.Torneio_ID
+                    View_PartidaResultado
                 WHERE 
-                    P.Torneio_ID = @TorneioID";
+                    Torneio_ID = @TorneioID";
 
                     SqlDataAdapter dataAdapter = new SqlDataAdapter(query, connection);
                     dataAdapter.SelectCommand.Parameters.AddWithValue("@TorneioID", selectedTorneioID);
@@ -165,10 +161,11 @@ namespace Form1
                 }
                 catch (Exception ex)
                 {
-                    //MessageBox.Show("Erro ao carregar os dados: " + ex.Message);
+                    // MessageBox.Show("Erro ao carregar os dados: " + ex.Message);
                 }
             }
         }
+
 
 
 
@@ -195,20 +192,16 @@ namespace Form1
                     connection.Open();
                     string query = @"
                 SELECT 
-                    R.Numero, 
-                    R.Num_Pokemons_Vivos_J1, 
-                    R.Num_Pokemons_Vivos_J2, 
-                    R.Jogador_Nickname_Vencedor, 
-                    P.Jogador_Nickname_1, 
-                    P.Jogador_Nickname_2 
+                    Numero, 
+                    Num_Pokemons_Vivos_J1, 
+                    Num_Pokemons_Vivos_J2, 
+                    Jogador_Nickname_Vencedor, 
+                    Jogador_Nickname_1, 
+                    Jogador_Nickname_2
                 FROM 
-                    PokeCup_Ronda R
-                INNER JOIN 
-                    PokeCup_Partida P 
-                ON 
-                    R.Partida_Numero = P.Numero AND R.Torneio_ID = P.Torneio_ID
+                    View_RondaDetalhes
                 WHERE 
-                    R.Torneio_ID = @TorneioID AND R.Partida_Numero = @PartidaNumero";
+                    Torneio_ID = @TorneioID AND Partida_Numero = @PartidaNumero";
 
                     SqlDataAdapter dataAdapter = new SqlDataAdapter(query, connection);
                     dataAdapter.SelectCommand.Parameters.AddWithValue("@TorneioID", selectedTorneioID);
@@ -231,6 +224,7 @@ namespace Form1
                 }
             }
         }
+
 
 
 

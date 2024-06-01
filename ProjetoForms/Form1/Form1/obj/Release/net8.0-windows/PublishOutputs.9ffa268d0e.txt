@@ -1,0 +1,11 @@
+C:\Users\quimr\OneDrive\Documentos\Escola\3Ano\2Semestre\BD\projeto\Git\PokeCup\ProjetoExecutavel\Form1.exe
+C:\Users\quimr\OneDrive\Documentos\Escola\3Ano\2Semestre\BD\projeto\Git\PokeCup\ProjetoExecutavel\Form1.dll
+C:\Users\quimr\OneDrive\Documentos\Escola\3Ano\2Semestre\BD\projeto\Git\PokeCup\ProjetoExecutavel\Form1.deps.json
+C:\Users\quimr\OneDrive\Documentos\Escola\3Ano\2Semestre\BD\projeto\Git\PokeCup\ProjetoExecutavel\Form1.runtimeconfig.json
+C:\Users\quimr\OneDrive\Documentos\Escola\3Ano\2Semestre\BD\projeto\Git\PokeCup\ProjetoExecutavel\Form1.pdb
+C:\Users\quimr\OneDrive\Documentos\Escola\3Ano\2Semestre\BD\projeto\Git\PokeCup\ProjetoExecutavel\System.Data.SqlClient.dll
+C:\Users\quimr\OneDrive\Documentos\Escola\3Ano\2Semestre\BD\projeto\Git\PokeCup\ProjetoExecutavel\runtimes\win-arm64\native\sni.dll
+C:\Users\quimr\OneDrive\Documentos\Escola\3Ano\2Semestre\BD\projeto\Git\PokeCup\ProjetoExecutavel\runtimes\win-x64\native\sni.dll
+C:\Users\quimr\OneDrive\Documentos\Escola\3Ano\2Semestre\BD\projeto\Git\PokeCup\ProjetoExecutavel\runtimes\win-x86\native\sni.dll
+C:\Users\quimr\OneDrive\Documentos\Escola\3Ano\2Semestre\BD\projeto\Git\PokeCup\ProjetoExecutavel\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\quimr\OneDrive\Documentos\Escola\3Ano\2Semestre\BD\projeto\Git\PokeCup\ProjetoExecutavel\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll

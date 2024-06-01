@@ -29,8 +29,7 @@
         private void InitializeComponent()
         {
             label4 = new Label();
-            dataGridViewAtaques = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewAtaques).BeginInit();
+            listViewAtaques = new ListView();
             SuspendLayout();
             // 
             // label4
@@ -39,37 +38,35 @@
             label4.BackColor = SystemColors.Control;
             label4.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = SystemColors.ControlText;
-            label4.Location = new Point(35, 40);
+            label4.Location = new Point(31, 30);
             label4.Name = "label4";
-            label4.Size = new Size(149, 46);
+            label4.Size = new Size(121, 37);
             label4.TabIndex = 8;
             label4.Text = "Ataques";
             // 
-            // dataGridViewAtaques
+            // listViewAtaques
             // 
-            dataGridViewAtaques.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewAtaques.Location = new Point(35, 120);
-            dataGridViewAtaques.Margin = new Padding(3, 4, 3, 4);
-            dataGridViewAtaques.Name = "dataGridViewAtaques";
-            dataGridViewAtaques.RowHeadersWidth = 51;
-            dataGridViewAtaques.RowTemplate.Height = 24;
-            dataGridViewAtaques.Size = new Size(730, 291);
-            dataGridViewAtaques.TabIndex = 7;
-            dataGridViewAtaques.CellContentClick += dataGridViewAtaques_CellContentClick;
+            listViewAtaques.Location = new Point(31, 90);
+            listViewAtaques.Name = "listViewAtaques";
+            listViewAtaques.Size = new Size(875, 347);
+            listViewAtaques.TabIndex = 35;
+            listViewAtaques.UseCompatibleStateImageBehavior = false;
+            listViewAtaques.View = View.Details;
+            listViewAtaques.SelectedIndexChanged += listViewAtaques_SelectedIndexChanged;
             // 
             // Ataques
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(970, 489);
             ControlBox = false;
+            Controls.Add(listViewAtaques);
             Controls.Add(label4);
-            Controls.Add(dataGridViewAtaques);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Ataques";
             Text = "Ataques";
             Load += Ataques_Load;
-            ((System.ComponentModel.ISupportInitialize)dataGridViewAtaques).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -77,6 +74,6 @@
         #endregion
 
         private Label label4;
-        private DataGridView dataGridViewAtaques;
+        private ListView listViewAtaques;
     }
 }

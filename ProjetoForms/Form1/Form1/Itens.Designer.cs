@@ -29,8 +29,7 @@
         private void InitializeComponent()
         {
             label4 = new Label();
-            dataGridViewItens = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewItens).BeginInit();
+            listViewItens = new ListView();
             SuspendLayout();
             // 
             // label4
@@ -39,37 +38,35 @@
             label4.BackColor = SystemColors.Control;
             label4.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = SystemColors.ControlText;
-            label4.Location = new Point(35, 40);
+            label4.Location = new Point(31, 30);
             label4.Name = "label4";
-            label4.Size = new Size(98, 46);
+            label4.Size = new Size(80, 37);
             label4.TabIndex = 6;
             label4.Text = "Itens";
             // 
-            // dataGridViewItens
+            // listViewItens
             // 
-            dataGridViewItens.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewItens.Location = new Point(35, 120);
-            dataGridViewItens.Margin = new Padding(3, 4, 3, 4);
-            dataGridViewItens.Name = "dataGridViewItens";
-            dataGridViewItens.RowHeadersWidth = 51;
-            dataGridViewItens.RowTemplate.Height = 24;
-            dataGridViewItens.Size = new Size(730, 291);
-            dataGridViewItens.TabIndex = 5;
-            dataGridViewItens.CellContentClick += dataGridViewItens_CellContentClick;
+            listViewItens.Location = new Point(31, 82);
+            listViewItens.Name = "listViewItens";
+            listViewItens.Size = new Size(905, 395);
+            listViewItens.TabIndex = 34;
+            listViewItens.UseCompatibleStateImageBehavior = false;
+            listViewItens.View = View.Details;
+            listViewItens.SelectedIndexChanged += listViewItens_SelectedIndexChanged;
             // 
             // Itens
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(973, 523);
             ControlBox = false;
+            Controls.Add(listViewItens);
             Controls.Add(label4);
-            Controls.Add(dataGridViewItens);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Itens";
             Text = "Itens";
             Load += Itens_Load;
-            ((System.ComponentModel.ISupportInitialize)dataGridViewItens).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -77,6 +74,6 @@
         #endregion
 
         private Label label4;
-        private DataGridView dataGridViewItens;
+        private ListView listViewItens;
     }
 }

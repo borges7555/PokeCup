@@ -30,8 +30,8 @@
         {
             label4 = new Label();
             button1 = new Button();
-            dataGridView1 = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            listBoxJogadores = new ListBox();
+            buttonRemoverJogador = new Button();
             SuspendLayout();
             // 
             // label4
@@ -40,52 +40,62 @@
             label4.BackColor = SystemColors.Control;
             label4.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = SystemColors.ControlText;
-            label4.Location = new Point(53, 43);
+            label4.Location = new Point(46, 32);
             label4.Name = "label4";
-            label4.Size = new Size(184, 46);
+            label4.Size = new Size(150, 37);
             label4.TabIndex = 4;
             label4.Text = "Jogadores";
             label4.Click += label4_Click;
             // 
             // button1
             // 
-            button1.Location = new Point(567, 51);
-            button1.Margin = new Padding(3, 4, 3, 4);
+            button1.Location = new Point(353, 117);
             button1.Name = "button1";
-            button1.Size = new Size(179, 47);
+            button1.Size = new Size(157, 35);
             button1.TabIndex = 5;
             button1.Text = "Adicionar Jogador";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // dataGridView1
+            // listBoxJogadores
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(53, 144);
-            dataGridView1.Margin = new Padding(3, 4, 3, 4);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.RowTemplate.Height = 24;
-            dataGridView1.Size = new Size(694, 291);
-            dataGridView1.TabIndex = 19;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            listBoxJogadores.ItemHeight = 15;
+            listBoxJogadores.Location = new Point(46, 117);
+            listBoxJogadores.Name = "listBoxJogadores";
+            listBoxJogadores.SelectionMode = SelectionMode.MultiExtended;
+            listBoxJogadores.Size = new Size(278, 229);
+            listBoxJogadores.TabIndex = 30;
+            listBoxJogadores.SelectedIndexChanged += listBoxJogadores_SelectedIndexChanged;
+            // 
+            // buttonRemoverJogador
+            // 
+            buttonRemoverJogador.BackColor = SystemColors.WindowFrame;
+            buttonRemoverJogador.ForeColor = SystemColors.ButtonFace;
+            buttonRemoverJogador.Location = new Point(353, 168);
+            buttonRemoverJogador.Name = "buttonRemoverJogador";
+            buttonRemoverJogador.Size = new Size(157, 35);
+            buttonRemoverJogador.TabIndex = 31;
+            buttonRemoverJogador.Text = "Remover Jogador";
+            buttonRemoverJogador.UseVisualStyleBackColor = false;
+            buttonRemoverJogador.Click += buttonRemoverJogador_Click;
             // 
             // Jogadores
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            ClientSize = new Size(800, 451);
+            ClientSize = new Size(769, 419);
             ControlBox = false;
-            Controls.Add(dataGridView1);
+            Controls.Add(buttonRemoverJogador);
+            Controls.Add(listBoxJogadores);
             Controls.Add(button1);
             Controls.Add(label4);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Jogadores";
             Text = "Form4";
             Load += Form4_Load;
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -94,6 +104,7 @@
 
         private Label label4;
         private Button button1;
-        private DataGridView dataGridView1;
+        private ListBox listBoxJogadores;
+        private Button buttonRemoverJogador;
     }
 }

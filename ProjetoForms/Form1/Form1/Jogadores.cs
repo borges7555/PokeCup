@@ -30,28 +30,7 @@ namespace Form1
 
         private void Form4_Load(object sender, EventArgs e)
         {
-            // Defina sua string de conexão aqui
-            string connectionString = "Server=mednat.ieeta.pt\\SQLSERVER,8101;Database=p9g5;User Id=p9g5;Password=b62F@yZ$u@M%DB;";
-
-
-            // Crie a consulta SQL
-            string query = "SELECT * FROM PokeCup_Jogador";
-
-            try
-            {
-                // Use SqlConnection, SqlDataAdapter e DataTable para preencher o DataGridView
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    SqlDataAdapter dataAdapter = new SqlDataAdapter(query, connection);
-                    DataTable dataTable = new DataTable();
-                    dataAdapter.Fill(dataTable);
-                    dataGridView1.DataSource = dataTable;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao carregar dados: " + ex.Message);
-            }
+            LoadJogadores();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -63,6 +42,7 @@ namespace Form1
                     string nickname = addJogadorForm.Nickname;
                     float wl = addJogadorForm.WL;
                     CreateJogador(nickname, wl);
+                    LoadJogadores(); // Recarrega os dados após criar um novo jogador
                 }
             }
         }
@@ -84,5 +64,82 @@ namespace Form1
             }
         }
 
+        private void LoadJogadores()
+        {
+            string connectionString = "Server=mednat.ieeta.pt\\SQLSERVER,8101;Database=p9g5;User Id=p9g5;Password=b62F@yZ$u@M%DB;";
+
+            string query = "SELECT * FROM PokeCup_Jogador";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlDataAdapter dataAdapter = new SqlDataAdapter(query, connection);
+                    DataTable dataTable = new DataTable();
+                    dataAdapter.Fill(dataTable);
+
+                    listBoxJogadores.Items.Clear();
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        string jogadorInfo = $"Nickname: {row["Nickname"]}, W/L: {row["W_L"]}";
+                        listBoxJogadores.Items.Add(jogadorInfo);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao carregar dados: " + ex.Message);
+            }
+        }
+
+        private void listBoxJogadores_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonRemoverJogador_Click(object sender, EventArgs e)
+        {
+            if (listBoxJogadores.SelectedItem == null)
+            {
+                MessageBox.Show("Por favor, selecione um jogador para remover.");
+                return;
+            }
+
+            string jogadorInfo = listBoxJogadores.SelectedItem.ToString();
+            string nickname = jogadorInfo.Split(',')[0].Split(':')[1].Trim();
+
+            string connectionString = "Server=mednat.ieeta.pt\\SQLSERVER,8101;Database=p9g5;User Id=p9g5;Password=b62F@yZ$u@M%DB;";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand("DeleteJogador", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@Nickname", nickname);
+                        command.ExecuteNonQuery();
+                    }
+                }
+                LoadJogadores(); // Recarrega os dados após remover um jogador
+                MessageBox.Show("Jogador removido com sucesso.");
+            }
+            catch (SqlException ex)
+            {
+                if (ex.Number == 50000) // Número de erro para RAISERROR
+                {
+                    MessageBox.Show(ex.Message); // Mostra a mensagem de erro definida no RAISERROR
+                }
+                else
+                {
+                    MessageBox.Show("Erro ao remover jogador: " + ex.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao carregar dados: " + ex.Message);
+            }
+        }
     }
 }

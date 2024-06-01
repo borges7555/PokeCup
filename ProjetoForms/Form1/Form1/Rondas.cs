@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Form1
@@ -16,15 +10,23 @@ namespace Form1
         public Rondas()
         {
             InitializeComponent();
+            ConfigureListView();
             LoadRondas();
         }
 
-        private string connectionString = "Server=mednat.ieeta.pt\\\\SQLSERVER,8101;Database=p9g5;User Id=p9g5;Password=b62F@yZ$u@M%DB;";
+        private string connectionString = "Server=mednat.ieeta.pt\\SQLSERVER,8101;Database=p9g5;User Id=p9g5;Password=b62F@yZ$u@M%DB;";
 
-
-        private void dataGridViewRondas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void ConfigureListView()
         {
-
+            listViewRondas.View = View.Details;
+            listViewRondas.Columns.Add("Numero", -2, HorizontalAlignment.Left);
+            listViewRondas.Columns.Add("Num_Pokemons_Vivos_J1", -2, HorizontalAlignment.Left);
+            listViewRondas.Columns.Add("Num_Pokemons_Vivos_J2", -2, HorizontalAlignment.Left);
+            listViewRondas.Columns.Add("Partida_Numero", -2, HorizontalAlignment.Left);
+            listViewRondas.Columns.Add("Torneio_ID", -2, HorizontalAlignment.Left);
+            listViewRondas.Columns.Add("Jogador_Nickname_Vencedor", -2, HorizontalAlignment.Left);
+            listViewRondas.FullRowSelect = true;
+            listViewRondas.GridLines = true;
         }
 
         private void LoadRondas()
@@ -38,7 +40,25 @@ namespace Form1
                     SqlDataAdapter dataAdapter = new SqlDataAdapter(query, connection);
                     DataTable dataTable = new DataTable();
                     dataAdapter.Fill(dataTable);
-                    dataGridViewRondas.DataSource = dataTable;
+
+                    listViewRondas.Items.Clear();
+
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        ListViewItem item = new ListViewItem(row["Numero"].ToString());
+                        item.SubItems.Add(row["Num_Pokemons_Vivos_J1"].ToString());
+                        item.SubItems.Add(row["Num_Pokemons_Vivos_J2"].ToString());
+                        item.SubItems.Add(row["Partida_Numero"].ToString());
+                        item.SubItems.Add(row["Torneio_ID"].ToString());
+                        item.SubItems.Add(row["Jogador_Nickname_Vencedor"].ToString());
+                        listViewRondas.Items.Add(item);
+                    }
+
+                    // Ajustar a largura das colunas
+                    foreach (ColumnHeader column in listViewRondas.Columns)
+                    {
+                        column.Width = -2; // Auto ajuste da largura da coluna
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -51,6 +71,11 @@ namespace Form1
         {
             AddRondaPopUp createRondaPopUp = new AddRondaPopUp();
             createRondaPopUp.ShowDialog();
+        }
+
+        private void listViewRondas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Código para lidar com a seleção de itens no ListView (se necessário)
         }
     }
 }

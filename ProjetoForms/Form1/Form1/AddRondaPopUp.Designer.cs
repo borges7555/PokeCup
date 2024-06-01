@@ -71,7 +71,7 @@
             buttonSimular.Name = "buttonSimular";
             buttonSimular.Size = new Size(200, 50);
             buttonSimular.TabIndex = 19;
-            buttonSimular.Text = "Criar Partidas";
+            buttonSimular.Text = "Simular";
             buttonSimular.UseVisualStyleBackColor = true;
             buttonSimular.Click += buttonSimular_Click;
             // 

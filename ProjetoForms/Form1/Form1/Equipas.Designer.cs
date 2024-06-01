@@ -124,7 +124,7 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 24;
-            dataGridView1.Size = new Size(475, 221);
+            dataGridView1.Size = new Size(592, 221);
             dataGridView1.TabIndex = 20;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -144,7 +144,7 @@
             // 
             AutoSize = true;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            ClientSize = new Size(903, 548);
+            ClientSize = new Size(1020, 548);
             ControlBox = false;
             Controls.Add(label5);
             Controls.Add(dataGridView1);
