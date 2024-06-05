@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Form1.ConnectToServer;
 
 namespace Form1
 {
@@ -49,7 +50,7 @@ namespace Form1
 
         private void CreateJogador(string nickname, float wl)
         {
-            string connectionString = "Server=mednat.ieeta.pt\\SQLSERVER,8101;Database=p9g5;User Id=p9g5;Password=b62F@yZ$u@M%DB;";
+            string connectionString = ConnectionStringProvider.ConnectionString;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 using (SqlCommand command = new SqlCommand("CreateJogador", connection))
@@ -66,7 +67,7 @@ namespace Form1
 
         private void LoadJogadores()
         {
-            string connectionString = "Server=mednat.ieeta.pt\\SQLSERVER,8101;Database=p9g5;User Id=p9g5;Password=b62F@yZ$u@M%DB;";
+            string connectionString = ConnectionStringProvider.ConnectionString;
 
             string query = "SELECT * FROM PokeCup_Jogador";
 
@@ -108,7 +109,7 @@ namespace Form1
             string jogadorInfo = listBoxJogadores.SelectedItem.ToString();
             string nickname = jogadorInfo.Split(',')[0].Split(':')[1].Trim();
 
-            string connectionString = "Server=mednat.ieeta.pt\\SQLSERVER,8101;Database=p9g5;User Id=p9g5;Password=b62F@yZ$u@M%DB;";
+            string connectionString = ConnectionStringProvider.ConnectionString;
 
             try
             {

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Form1.ConnectToServer;
 
 namespace Form1
 {
@@ -26,7 +27,7 @@ namespace Form1
             public int WL { get; set; }
         }
 
-        private string connectionString = "Server=mednat.ieeta.pt\\\\SQLSERVER,8101;Database=p9g5;User Id=p9g5;Password=b62F@yZ$u@M%DB;";
+        private string connectionString = ConnectionStringProvider.ConnectionString;
 
         private void buttonSimular_Click(object sender, EventArgs e)
         {

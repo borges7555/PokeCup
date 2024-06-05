@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Form1.ConnectToServer;
 
 namespace Form1
 {
@@ -72,7 +73,7 @@ namespace Form1
             //MessageBox.Show($"nMax: {nMax}");
 
             // Connection string and database insertion
-            string connectionString = "Server=mednat.ieeta.pt\\SQLSERVER,8101;Database=p9g5;User Id=p9g5;Password=b62F@yZ$u@M%DB;";
+            string connectionString = ConnectionStringProvider.ConnectionString;
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Form1.ConnectToServer;
 using static Form1.CriarPartidasPopUp;
 
 namespace Form1
@@ -20,7 +21,7 @@ namespace Form1
             LoadTorneios();
         }
 
-        private string connectionString = "Server=mednat.ieeta.pt\\\\SQLSERVER,8101;Database=p9g5;User Id=p9g5;Password=b62F@yZ$u@M%DB;";
+        private string connectionString = ConnectionStringProvider.ConnectionString;
 
         private void comboBoxTorneios_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -310,25 +311,6 @@ namespace Form1
 
                     connection.Open();
                     command.ExecuteNonQuery();
-                }
-            }
-        }
-
-
-
-
-
-        private bool PartidaExiste(int partidaNumero, int torneioId)
-        {
-            string query = "SELECT COUNT(*) FROM PokeCup_Partida WHERE Numero = @partidaNumero AND Torneio_ID = @torneioId";
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@partidaNumero", partidaNumero);
-                    command.Parameters.AddWithValue("@torneioId", torneioId);
-                    connection.Open();
-                    return (int)command.ExecuteScalar() > 0;
                 }
             }
         }

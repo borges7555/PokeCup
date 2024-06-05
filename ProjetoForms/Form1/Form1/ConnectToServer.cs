@@ -17,7 +17,18 @@ namespace Form1
         public ConnectToServer()
         {
             InitializeComponent();
+
+            textBox1.Text = "mednat.ieeta.pt\\SQLSERVER,8101";
+            textBox4.Text = "p9g5";
+            textBox3.Text = "p9g5";
+            textBox2.Text = "b62F@yZ$u@M%DB";
         }
+
+        public static class ConnectionStringProvider
+        {
+            public static string ConnectionString { get; set; } = "Server=mednat.ieeta.pt\\SQLSERVER,8101;Database=p9g5;User Id=p9g5;Password=b62F@yZ$u@M%DB;";
+        }
+
 
         private void label4_Click(object sender, EventArgs e)
         {
@@ -29,6 +40,7 @@ namespace Form1
 
         }
 
+        // User
         private void label3_Click(object sender, EventArgs e)
         {
 
@@ -46,10 +58,6 @@ namespace Form1
                 {
                     MessageBox.Show("Successful connection to database " + CN.Database + " on the " +
                                     CN.DataSource + " server", "Connection Test", MessageBoxButtons.OK);
-
-                    //HomePage form3 = new HomePage();
-                    //form3.Show();
-                    //this.Hide(); // Ou this.Close(); se quiser fechar o Form5
                 }
             }
             catch (Exception ex)
@@ -61,7 +69,6 @@ namespace Form1
                 CN.Close();
         }
 
-
         private void button1_Click(object sender, EventArgs e)
         {
             string dbServer = textBox1.Text;
@@ -70,18 +77,25 @@ namespace Form1
             string userPass = textBox2.Text;
 
             TestDBConnection(dbServer, dbName, userName, userPass);
+
+            // Atualizar a string de conexão global
+            ConnectionStringProvider.ConnectionString = $"Server={dbServer};Database={dbName};User Id={userName};Password={userPass};";
         }
 
+        // Server
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
 
+
+        // User
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
 
         }
 
+        // Password
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
@@ -92,7 +106,13 @@ namespace Form1
 
         }
 
+        // DB name
         private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
         {
 
         }

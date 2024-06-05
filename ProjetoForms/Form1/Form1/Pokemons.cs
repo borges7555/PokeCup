@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
+using static Form1.ConnectToServer;
 
 namespace Form1
 {
@@ -47,7 +48,7 @@ namespace Form1
 
         private void LoadPokemons()
         {
-            string connectionString = "Server=mednat.ieeta.pt\\SQLSERVER,8101;Database=p9g5;User Id=p9g5;Password=b62F@yZ$u@M%DB;";
+            string connectionString = ConnectionStringProvider.ConnectionString;
 
             string query = "SELECT * FROM PokeCup_Pokemons";
 
